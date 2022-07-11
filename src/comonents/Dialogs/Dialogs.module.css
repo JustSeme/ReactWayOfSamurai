@@ -1,0 +1,22 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    height: 90%;
+}
+
+.dialogs>* {
+    margin: 0 5px;
+}
+
+.dialogsItems {
+    background-color: var(--light-blue-color);
+    border-radius: 10px;
+    height: 100%;
+    margin-left: 0;
+}
+
+.messages {
+    background-color: lightgray;
+    border-radius: 10px;
+    height: 100%;
+}
