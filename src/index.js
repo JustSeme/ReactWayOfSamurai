@@ -6,14 +6,14 @@ import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderEntiresTree = (state, onMessageChange, newMessage) => {
+let rerenderEntiresTree = (state) => {
   root.render(
     <BrowserRouter>
-      <App state={state} onMessageChange={onMessageChange} newMessage={newMessage} />
+      <App state={state} onMessageChange={store.onMessageChange.bind(store)} newMessage={store.newMessage.bind(store)} />
     </BrowserRouter>
   );
 }
 
 store.subscribe(rerenderEntiresTree)
 
-rerenderEntiresTree(store.getState(), store.onMessageChange, store.newMessage)
+rerenderEntiresTree(store.getState())
