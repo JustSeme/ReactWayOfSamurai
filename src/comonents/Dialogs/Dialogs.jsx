@@ -1,22 +1,15 @@
 import style from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './MessageItem/MessageItem'
+import { useRef, useState } from 'react'
+import MyButton from '../UI/button/MyButton'
 
-function Dialogs() {
-    const dialogsData = [
-        { name: 'Dmitriy', id: 1 },
-        { name: 'Veronika', id: 2 },
-        { name: 'Vera', id: 3 },
-        { name: 'Victoria', id: 4 },
-        { name: 'Egor', id: 5 },
-    ]
-    const messagesData = [
-        { messageText: 'Hey! How are you?', id: 1 },
-        { messageText: 'Why did you ignore me?', id: 2 },
-        { messageText: "I'm just writing messages", id: 3 },
-    ]
-    const dialogsElements = dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>)
-    const messagesElements = messagesData.map(message => <MessageItem>{message.messageText}</MessageItem>)
+function Dialogs({ dialogsPage, ...props }) {
+    /* const [messages, setMessages] = useState(dialogsPage.messagesData) */
+    const textareaRef = useRef('')
+
+    const dialogsElements = dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>)
+    const messagesElements = dialogsPage.messagesData.map(message => <MessageItem key={message.id}>{message.messageText}</MessageItem>)
 
     return (
         <div className={style.dialogs}>
@@ -24,9 +17,14 @@ function Dialogs() {
                 {dialogsElements}
             </div>
             <div className={style.messages}>
+                <h3 style={{ 'textAlign': 'center' }}>Messages</h3>
                 {messagesElements}
+                <div className={style.messageForm}>
+                    <textarea ref={textareaRef} onChange={(e) => dialogsPage.onMessageChange(e)} value={dialogsPage.newMessageText} placeholder='Введите сообщение...'></textarea>
+                    <MyButton onClick={dialogsPage.newMessage}>Отправить сообщение</MyButton>
+                </div>
             </div>
-        </div>
+        </div >
     )
 }
 

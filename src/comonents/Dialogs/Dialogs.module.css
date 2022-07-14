@@ -20,3 +20,23 @@
     border-radius: 10px;
     height: 100%;
 }
+
+.messageForm {
+    display: inline-block;
+    margin: 10px;
+}
+
+.messageForm button {
+    height: 32px;
+    vertical-align: bottom;
+}
+
+.messageForm textarea {
+    font-size: 16px;
+    padding: 5px 15px;
+    resize: none;
+    border-radius: 10px;
+    margin-right: 5px;
+    height: 100%;
+    background: none;
+}

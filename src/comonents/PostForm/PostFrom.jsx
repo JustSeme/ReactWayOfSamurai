@@ -5,12 +5,12 @@ import style from './PostForm.module.css'
 import veronika from '../../img/avatar.png'
 
 const PostFrom = ({ setPost, posts, ...props }) => {
-    const [username, setUsername] = useState('')
-    const [message, setMessage] = useState('')
+    const [title, setUsername] = useState('')
+    const [body, setMessage] = useState('')
     const keyMessages = {
-        'привет, вероника': `Привет, ${username}!`,
+        'привет, вероника': `Привет, ${title}!`,
         'который час?': getTime(),
-        'сколько будет': veronikaCalc(message) /* Калькулятор однозначных чисел */
+        'сколько будет': veronikaCalc(body) /* Калькулятор однозначных чисел */
     }
 
     function veronikaCalc(string) {
@@ -39,23 +39,23 @@ const PostFrom = ({ setPost, posts, ...props }) => {
     function createPost(e) {
         const newPost = {
             id: Date.now(),
-            username,
-            message
+            title,
+            body
         }
         setPost([...posts, newPost])
     }
 
     useEffect(() => {
         for (let keyMessage in keyMessages) {
-            if (message.toLocaleLowerCase().includes(keyMessage)) {
+            if (body.toLocaleLowerCase().includes(keyMessage)) {
                 const botMessage = {
                     id: Date.now(),
                     avatar: veronika,
-                    username: 'Вероника',
-                    message: keyMessages[keyMessage]
+                    title: 'Вероника',
+                    body: keyMessages[keyMessage]
                 }
-                if (message.includes('сколько будет')) {
-                    veronikaCalc(message)
+                if (body.includes('сколько будет')) {
+                    veronikaCalc(body)
                 }
                 setPost([...posts, botMessage])
             }
@@ -68,11 +68,11 @@ const PostFrom = ({ setPost, posts, ...props }) => {
     return (
         <div className={style.newPost}>
             <MyInput
-                value={username}
+                value={title}
                 onChange={e => setUsername(e.target.value)}
                 placeholder='Ваше имя'
             />
-            <textarea className={style.textarea} value={message} placeholder="Новый пост" cols="100" rows="4" onChange={e => setMessage(e.target.value)} />
+            <textarea className={style.textarea} value={body} placeholder="Новый пост" cols="100" rows="4" onChange={e => setMessage(e.target.value)} />
             <div>
                 <MyButton onClick={e => createPost(e)} type='submit'>Создать пост</MyButton>
             </div>
