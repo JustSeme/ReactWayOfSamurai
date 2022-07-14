@@ -8,14 +8,14 @@ import Music from './comonents/Music/Music';
 import Settings from './comonents/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
 
-function App({ state, onMessageChange, newMessage, ...props }) {
+function App({ state, onMessageChange, dispatch, ...props }) {
   return (
     <div className='app-wrapper'>
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
         <Routes>
-          <Route path='/dialogs/*' element={<Dialogs dialogsPage={state.dialogsPage} onMessageChange={onMessageChange} newMessage={newMessage} />} />
+          <Route path='/dialogs/*' element={<Dialogs dialogsPage={state.dialogsPage} dispatch={dispatch} />} />
           <Route path='/profile' element={<Profile profilePage={state.profilePage} />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />

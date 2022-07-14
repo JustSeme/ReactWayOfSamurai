@@ -4,12 +4,19 @@ import MessageItem from './MessageItem/MessageItem'
 import { useRef, useState } from 'react'
 import MyButton from '../UI/button/MyButton'
 
-function Dialogs({ dialogsPage, onMessageChange, newMessage, ...props }) {
+function Dialogs({ dialogsPage, dispatch, ...props }) {
     /* const [messages, setMessages] = useState(dialogsPage.messagesData) */
-    const textareaRef = useRef('')
 
     const dialogsElements = dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>)
     const messagesElements = dialogsPage.messagesData.map(message => <MessageItem key={message.id}>{message.messageText}</MessageItem>)
+
+    const newMessage = () => {
+        dispatch({ type: 'ADD-MESSAGE' })
+    }
+
+    const onMessageChange = (e) => {
+        dispatch({ type: 'UPDATE-MESSAGE-TEXT', newMessageText: e.target.value })
+    }
 
     return (
         <div className={style.dialogs}>
@@ -20,7 +27,7 @@ function Dialogs({ dialogsPage, onMessageChange, newMessage, ...props }) {
                 <h3 style={{ 'textAlign': 'center' }}>Messages</h3>
                 {messagesElements}
                 <div className={style.messageForm}>
-                    <textarea ref={textareaRef} onChange={(e) => onMessageChange(e)} value={dialogsPage.newMessageText} placeholder='Введите сообщение...'></textarea>
+                    <textarea onChange={(e) => onMessageChange(e)} value={dialogsPage.newMessageText} placeholder='Введите сообщение...'></textarea>
                     <MyButton onClick={newMessage}>Отправить сообщение</MyButton>
                 </div>
             </div>

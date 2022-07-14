@@ -1,5 +1,3 @@
-import veronika from './img/avatar.png'
-
 let store = {
     _state: {
         dialogsPage: {
@@ -21,6 +19,9 @@ let store = {
             postsData: [],
         },
     },
+    _subscriber() {
+        console.log('no subscribers(observers)');
+    },
     onMessageChange(e) {
         this._state.dialogsPage.newMessageText = e.target.value
         this._subscriber(this._state)
@@ -34,15 +35,26 @@ let store = {
         this._state.dialogsPage.newMessageText = ''
         this._subscriber(this._state)
     },
-    _subscriber() {
-        console.log('no subscribers(observers)');
-    },
     subscribe(observer) {
         this._subscriber = observer
     },
     getState() {
         return this._state
-    }
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-MESSAGE') {
+            const newMessage = {
+                id: Date.now(),
+                messageText: this._state.dialogsPage.newMessageText
+            }
+            this._state.dialogsPage.messagesData.push(newMessage)
+            this._state.dialogsPage.newMessageText = ''
+            this._subscriber(this._state)
+        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.newMessageText
+            this._subscriber(this._state)
+        }
+    },
 }
 
 window.store = store
