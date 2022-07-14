@@ -4,7 +4,7 @@ import MessageItem from './MessageItem/MessageItem'
 import { useRef, useState } from 'react'
 import MyButton from '../UI/button/MyButton'
 
-function Dialogs({ dialogsPage, ...props }) {
+function Dialogs({ dialogsPage, onMessageChange, newMessage, ...props }) {
     /* const [messages, setMessages] = useState(dialogsPage.messagesData) */
     const textareaRef = useRef('')
 
@@ -20,8 +20,8 @@ function Dialogs({ dialogsPage, ...props }) {
                 <h3 style={{ 'textAlign': 'center' }}>Messages</h3>
                 {messagesElements}
                 <div className={style.messageForm}>
-                    <textarea ref={textareaRef} onChange={(e) => dialogsPage.onMessageChange(e)} value={dialogsPage.newMessageText} placeholder='Введите сообщение...'></textarea>
-                    <MyButton onClick={dialogsPage.newMessage}>Отправить сообщение</MyButton>
+                    <textarea ref={textareaRef} onChange={(e) => onMessageChange(e)} value={dialogsPage.newMessageText} placeholder='Введите сообщение...'></textarea>
+                    <MyButton onClick={newMessage}>Отправить сообщение</MyButton>
                 </div>
             </div>
         </div >
