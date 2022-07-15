@@ -1,21 +1,19 @@
 import style from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './MessageItem/MessageItem'
-import { useRef, useState } from 'react'
 import MyButton from '../UI/button/MyButton'
+import { onMessageChangeActionCreator, newMessageActionCreator } from '../../store'
 
 function Dialogs({ dialogsPage, dispatch, ...props }) {
-    /* const [messages, setMessages] = useState(dialogsPage.messagesData) */
-
     const dialogsElements = dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>)
     const messagesElements = dialogsPage.messagesData.map(message => <MessageItem key={message.id}>{message.messageText}</MessageItem>)
 
     const newMessage = () => {
-        dispatch({ type: 'ADD-MESSAGE' })
+        dispatch(newMessageActionCreator())
     }
 
     const onMessageChange = (e) => {
-        dispatch({ type: 'UPDATE-MESSAGE-TEXT', newMessageText: e.target.value })
+        dispatch(onMessageChangeActionCreator(e.target.value))
     }
 
     return (

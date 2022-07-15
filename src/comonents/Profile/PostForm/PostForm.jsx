@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import MyButton from "../UI/button/MyButton";
-import MyInput from '../UI/MyInput/MyInput';
+import MyButton from "../../UI/button/MyButton";
+import MyInput from '../../UI/MyInput/MyInput';
 import style from './PostForm.module.css'
-import veronika from '../../img/avatar.png'
+import veronika from '../../../img/avatar.png'
+import { newPostActionCreator, onPostChangeActionCreator, onPostTitleChangeActionCreator } from '../../../store';
 
-const PostFrom = ({ setPost, posts, ...props }) => {
-    const [title, setUsername] = useState('')
+const PostFrom = ({ dispatch, postsData, newPostText, newPostTitleText, ...props }) => {
+    /* const [title, setUsername] = useState('')
     const [body, setMessage] = useState('')
     const keyMessages = {
         'привет, вероника': `Привет, ${title}!`,
         'который час?': getTime(),
-        'сколько будет': veronikaCalc(body) /* Калькулятор однозначных чисел */
-    }
+        'сколько будет': veronikaCalc(body) /* Калькулятор однозначных чисел 
+    } */
 
-    function veronikaCalc(string) {
+    /* function veronikaCalc(string) {
         let arrayOfNumbers = []
         if (string.search(/\d/) != -1) {
             for (let i = 0; i < string.length; i++) {
@@ -37,12 +38,7 @@ const PostFrom = ({ setPost, posts, ...props }) => {
     }
 
     function createPost(e) {
-        const newPost = {
-            id: Date.now(),
-            title,
-            body
-        }
-        setPost([...posts, newPost])
+        dispatch()
     }
 
     useEffect(() => {
@@ -63,18 +59,18 @@ const PostFrom = ({ setPost, posts, ...props }) => {
 
         setUsername('')
         setMessage('')
-    }, [posts])
+    }, [posts]) */
 
     return (
         <div className={style.newPost}>
             <MyInput
-                value={title}
-                onChange={e => setUsername(e.target.value)}
+                value={newPostTitleText}
+                onChange={e => dispatch(onPostTitleChangeActionCreator(e.target.value))}
                 placeholder='Ваше имя'
             />
-            <textarea className={style.textarea} value={body} placeholder="Новый пост" cols="100" rows="4" onChange={e => setMessage(e.target.value)} />
+            <textarea className={style.textarea} value={newPostText} placeholder="Новый пост" cols="100" rows="4" onChange={e => dispatch(onPostChangeActionCreator(e.target.value))} />
             <div>
-                <MyButton onClick={e => createPost(e)} type='submit'>Создать пост</MyButton>
+                <MyButton onClick={() => dispatch(newPostActionCreator())}>Создать пост</MyButton>
             </div>
         </div>
     );

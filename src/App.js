@@ -16,7 +16,7 @@ function App({ state, onMessageChange, dispatch, ...props }) {
       <div className='app-wrapper-content'>
         <Routes>
           <Route path='/dialogs/*' element={<Dialogs dialogsPage={state.dialogsPage} dispatch={dispatch} />} />
-          <Route path='/profile' element={<Profile profilePage={state.profilePage} />} />
+          <Route path='/profile' element={<Profile profilePage={state.profilePage} dispatch={dispatch} />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
