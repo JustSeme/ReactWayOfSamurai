@@ -2,7 +2,7 @@ import style from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './MessageItem/MessageItem'
 import MyButton from '../UI/button/MyButton'
-import { onMessageChangeActionCreator, newMessageActionCreator } from '../../store'
+import { onMessageChangeActionCreator, newMessageActionCreator } from '../../redux/store'
 
 function Dialogs({ dialogsPage, dispatch, ...props }) {
     const dialogsElements = dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>)

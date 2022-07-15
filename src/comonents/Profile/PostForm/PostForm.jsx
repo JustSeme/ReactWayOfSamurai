@@ -3,7 +3,7 @@ import MyButton from "../../UI/button/MyButton";
 import MyInput from '../../UI/MyInput/MyInput';
 import style from './PostForm.module.css'
 import veronika from '../../../img/avatar.png'
-import { newPostActionCreator, onPostChangeActionCreator, onPostTitleChangeActionCreator } from '../../../store';
+import { newPostActionCreator, onPostChangeActionCreator, onPostTitleChangeActionCreator } from '../../../redux/store';
 
 const PostFrom = ({ dispatch, postsData, newPostText, newPostTitleText, ...props }) => {
     /* const [title, setUsername] = useState('')

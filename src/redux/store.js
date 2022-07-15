@@ -1,4 +1,6 @@
-import veronika from './img/avatar.png'
+import veronika from '../img/avatar.png'
+import dialogsReducer from './dialogsReducer'
+import profileReducer from './profileReducer'
 
 const ADD_MESSAGE = 'ADD_MESSAGE'
 const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
@@ -22,15 +24,15 @@ let store = {
                 { messageText: 'Why did you ignore me?', id: 2 },
                 { messageText: "I'm just writing messages", id: 3 },
             ],
-            newMessageText: 'hello world',
+            newMessageText: '',
         },
         profilePage: {
             postsData: [
                 { id: 1, title: 'Вероника', body: 'Всем привет!', avatar: veronika },
                 { id: 2, title: 'Егор', body: 'Привет, Вероника!' },
             ],
-            newPostText: 'Hello, new post',
-            newPostTitleText: 'Hello, title!',
+            newPostText: '',
+            newPostTitleText: '',
         },
     },
     _subscriber() {
@@ -56,40 +58,10 @@ let store = {
         return this._state
     },
     dispatch(action) {
-        switch (action.type) {
-            case ADD_MESSAGE:
-                const newMessage = {
-                    id: Date.now(),
-                    messageText: this._state.dialogsPage.newMessageText
-                }
-                this._state.dialogsPage.messagesData.push(newMessage)
-                this._state.dialogsPage.newMessageText = ''
-                this._subscriber(this._state)
-                break;
-            case UPDATE_MESSAGE_TEXT:
-                this._state.dialogsPage.newMessageText = action.newMessageText
-                this._subscriber(this._state)
-                break
-            case ADD_POST:
-                const newPost = {
-                    id: Date.now(),
-                    title: this._state.profilePage.newPostTitleText,
-                    body: this._state.profilePage.newPostText,
-                }
-                this._state.profilePage.postsData.push(newPost)
-                this._state.profilePage.newPostTitleText = ''
-                this._state.profilePage.newPostText = ''
-                this._subscriber(this._state)
-                break;
-            case UPDATE_POST_TITLE:
-                this._state.profilePage.newPostTitleText = action.newPostTitleText
-                this._subscriber(this._state)
-            case UPDATE_POST_TEXT:
-                this._state.profilePage.newPostText = action.newPostText
-                this._subscriber(this._state)
-            default:
-                break;
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.profilePage = dialogsReducer(this._state.dialogsPage, action)
+
+        this._subscriber(this._state)
     },
 }
 
