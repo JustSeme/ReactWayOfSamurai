@@ -5,8 +5,8 @@ import MyButton from '../UI/button/MyButton'
 import { onMessageChangeActionCreator, newMessageActionCreator } from '../../redux/store'
 
 function Dialogs({ dialogsPage, dispatch, ...props }) {
-    const dialogsElements = dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>)
-    const messagesElements = dialogsPage.messagesData.map(message => <MessageItem key={message.id}>{message.messageText}</MessageItem>)
+    const dialogsElements = dialogsPage.dialogsData ? dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>) : ''
+    const messagesElements = dialogsPage.messagesData ? dialogsPage.messagesData.map(message => <MessageItem key={message.id}>{message.messageText}</MessageItem>) : ''
 
     const newMessage = () => {
         dispatch(newMessageActionCreator())

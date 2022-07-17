@@ -31,7 +31,7 @@ function MyPosts({ profilePage, dispatch, ...props }) {
         fetchData()
     }, []) */
 
-    const postsElements = profilePage.postsData.map((post) => <Post post={post} key={post.id} />)
+    const postsElements = profilePage.postsData ? profilePage.postsData.map((post) => <Post post={post} key={post.id} />) : ''
 
     return (
         <div>
