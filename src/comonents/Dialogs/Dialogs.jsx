@@ -2,19 +2,10 @@ import style from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './MessageItem/MessageItem'
 import MyButton from '../UI/button/MyButton'
-import { onMessageChangeActionCreator, newMessageActionCreator } from '../../redux/store'
 
-function Dialogs({ dialogsPage, dispatch, ...props }) {
+function Dialogs({ dialogsPage, onMessageChange, newMessage, ...props }) {
     const dialogsElements = dialogsPage.dialogsData ? dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>) : ''
     const messagesElements = dialogsPage.messagesData ? dialogsPage.messagesData.map(message => <MessageItem key={message.id}>{message.messageText}</MessageItem>) : ''
-
-    const newMessage = () => {
-        dispatch(newMessageActionCreator())
-    }
-
-    const onMessageChange = (e) => {
-        dispatch(onMessageChangeActionCreator(e.target.value))
-    }
 
     return (
         <div className={style.dialogs}>
@@ -25,7 +16,7 @@ function Dialogs({ dialogsPage, dispatch, ...props }) {
                 <h3 style={{ 'textAlign': 'center' }}>Messages</h3>
                 {messagesElements}
                 <div className={style.messageForm}>
-                    <textarea onChange={(e) => onMessageChange(e)} value={dialogsPage.newMessageText} placeholder='Введите сообщение...'></textarea>
+                    <textarea onChange={(e) => onMessageChange(e.target.value)} value={dialogsPage.newMessageText} placeholder='Введите сообщение...'></textarea>
                     <MyButton onClick={newMessage}>Отправить сообщение</MyButton>
                 </div>
             </div>

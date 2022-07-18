@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import MyButton from "../../UI/button/MyButton";
-import MyInput from '../../UI/MyInput/MyInput';
-import style from './PostForm.module.css';
+import React, { } from 'react';
+import PostFrom from './PostForm';
+import { newPostActionCreator, onPostChangeActionCreator, onPostTitleChangeActionCreator } from '../../../redux/store';
+import StoreContext from '../../../StoreContext';
 
-const PostForm = ({ onCreatePost, onChangePostText, onChangePostTitle, profilePage, ...props }) => {
+const PostFormContainer = () => {
     /* const [title, setUsername] = useState('')
     const [body, setMessage] = useState('')
     const keyMessages = {
@@ -60,18 +60,25 @@ const PostForm = ({ onCreatePost, onChangePostText, onChangePostTitle, profilePa
     }, [posts]) */
 
     return (
-        <div className={style.newPost}>
-            <MyInput
-                value={profilePage.newPostTitleText}
-                onChange={e => onChangePostTitle(e.target.value)}
-                placeholder='Ваше имя'
-            />
-            <textarea className={style.textarea} value={profilePage.newPostText} placeholder="Новый пост" cols="100" rows="4" onChange={e => onChangePostText(e.target.value)} />
-            <div>
-                <MyButton onClick={onCreatePost}>Создать пост</MyButton>
-            </div>
-        </div>
-    );
+        <StoreContext.Consumer>
+            {store => {
+                const onChangePostTitle = (text) => {
+                    store.dispatch(onPostTitleChangeActionCreator(text))
+                }
+
+                const onChangePostText = (text) => {
+                    store.dispatch(onPostChangeActionCreator(text))
+                }
+
+                const onCreatePost = () => {
+                    store.dispatch(newPostActionCreator())
+                }
+
+                return <PostFrom onChangePostTitle={onChangePostTitle} onChangePostText={onChangePostText} onCreatePost={onCreatePost} profilePage={store.getState().profilePage} />
+
+            }}
+        </StoreContext.Consumer>
+    )
 };
 
-export default PostForm;
+export default PostFormContainer;
