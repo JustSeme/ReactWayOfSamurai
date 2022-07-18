@@ -1,7 +1,6 @@
 import style from './Profile.module.css'
 import wallpaper from '../../img/wallpaper.jpg'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import StoreContext from '../../StoreContext'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 
 function Profile({ ...props }) {
