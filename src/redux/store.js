@@ -76,6 +76,5 @@ export const onPostChangeActionCreator = (text) => ({ type: UPDATE_POST_TEXT, ne
 
 export const onPostTitleChangeActionCreator = (text) => ({ type: UPDATE_POST_TITLE, newPostTitleText: text })
 
-window.store = store
 
 export default store
