@@ -1,4 +1,52 @@
+.selectedPage {
+    font-weight: bold;
+}
+
+.user {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    margin: 10px 0;
+    padding: 10px 0;
+    height: 200px;
+}
+
+.user>* {
+    max-height: 60%;
+}
+
+.avatar {
+    margin: 10px 0;
+}
+
+.avatar div {
+    text-align: center;
+}
+
 .userPhoto {
     height: 150px;
     border-radius: 50%;
+}
+
+.userInfo {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.status {
+    margin-top: 55%;
+    color: lightslategray;
+    font-size: 18px;
+}
+
+.locationInfo {
+    margin-left: 10px;
+}
+
+.locationInfo>* {
+    margin-left: 70%;
 }
