@@ -1,7 +1,7 @@
 import style from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './MessageItem/MessageItem'
-import MyButton from '../UI/button/MyButton'
+import MyButton from '../UI/MyButton/MyButton'
 
 function Dialogs({ dialogsPage, onMessageChange, newMessage, ...props }) {
     const dialogsElements = dialogsPage.dialogsData ? dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>) : ''

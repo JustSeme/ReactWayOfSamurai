@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MyButton from "../../UI/button/MyButton";
+import MyButton from "../../UI/MyButton/MyButton";
 import MyInput from '../../UI/MyInput/MyInput';
 import style from './PostForm.module.css';
 

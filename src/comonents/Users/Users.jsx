@@ -1,26 +1,34 @@
 import React from 'react';
-import MyButton from '../UI/button/MyButton';
+import MyButton from '../UI/MyButton/MyButton';
 import noAvatar from '../../img/noAvatar.jpg'
 import styles from './Users.module.css'
-import axios from 'axios';
 
-const Users = ({ usersData, follow, unFollow, setUsers, ...props }) => {
-    if (usersData.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => setUsers(response.data.items))
-        /* setUsers([{ id: 1, name: 'Dmitriy K', followed: false, status: 'Hey! I am fine!', location: { country: 'Belarus', city: 'Gomel' } },
-        { id: 2, name: 'Semion M', followed: true, status: 'I am just training...', location: { country: 'Russia', city: 'Krasnodar' } },
-        { id: 3, name: 'Nikita C', followed: false, status: 'Yo!', location: { country: 'Ukraina', city: 'Kharkov' } },
-        { id: 4, avatar: veronika, name: 'Veronika K', followed: true, status: 'Hello from Australia', location: { country: 'Australia', city: 'Sidney' } }]) */
+const Users = (props) => {
+
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = []
+
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
+
+    let curP = props.currentPage;
+    let curPF = ((curP - 3) < 0) ? 0 : curP - 3;
+    let curPL = curP + 2;
+    let slicedPages = pages.slice(curPF, curPL);
 
     return (
         <div>
+            <div>
+                {slicedPages.map((page) => {
+                    return <span key={page} onClick={() => props.onPageChanged(page)} className={page === props.currentPage ? styles.selectedPage : ''}>{page}</span>
+                })}
+            </div>
             {
-                usersData.map(user => <div key={user.id} className={styles.user}>
+                props.usersData.map(user => <div key={user.id} className={styles.user}>
                     <span className={styles.avatar}>
-                        <div><img src={user.avatar ? user.avatar : noAvatar} className={styles.userPhoto} /></div>
-                        <div>{user.followed ? <MyButton onClick={() => unFollow(user.id)}>Unfollow</MyButton> : <MyButton onClick={() => follow(user.id)}>Follow</MyButton>}</div>
+                        <div><img src={user.photos.large != null ? user.photos.large : noAvatar} className={styles.userPhoto} /></div>
+                        <div>{user.followed ? <MyButton onClick={() => props.unFollow(user.id)}>Unfollow</MyButton> : <MyButton onClick={() => props.follow(user.id)}>Follow</MyButton>}</div>
                     </span>
                     <span className={styles.userInfo}>
                         <span>
