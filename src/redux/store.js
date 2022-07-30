@@ -2,13 +2,6 @@ import veronika from '../img/avatar.png'
 import dialogsReducer from './dialogsReducer'
 import profileReducer from './profileReducer'
 
-const ADD_MESSAGE = 'ADD_MESSAGE'
-const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
-const ADD_POST = 'ADD_POST'
-const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
-const UPDATE_POST_TITLE = 'UPDATE_POST_TITLE'
-
-
 let store = {
     _state: {
         dialogsPage: {
@@ -65,16 +58,6 @@ let store = {
     },
 }
 
-export const newMessageActionCreator = () => ({ type: ADD_MESSAGE })
-
-export const onMessageChangeActionCreator = (text) =>
-    ({ type: UPDATE_MESSAGE_TEXT, newMessageText: text, })
-
-export const newPostActionCreator = () => ({ type: ADD_POST })
-
-export const onPostChangeActionCreator = (text) => ({ type: UPDATE_POST_TEXT, newPostText: text })
-
-export const onPostTitleChangeActionCreator = (text) => ({ type: UPDATE_POST_TITLE, newPostTitleText: text })
 
 
 export default store

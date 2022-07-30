@@ -3,6 +3,7 @@ import veronika from '../img/avatar.png'
 const ADD_POST = 'ADD_POST'
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
 const UPDATE_POST_TITLE = 'UPDATE_POST_TITLE'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 const initialstate = {
     postsData: [
@@ -11,10 +12,10 @@ const initialstate = {
     ],
     newPostText: '',
     newPostTitleText: '',
+    profile: null,
 }
 
 const profileReducer = (state = initialstate, action) => {
-    let stateCopy
     switch (action.type) {
         case ADD_POST:
             const newPost = {
@@ -38,6 +39,11 @@ const profileReducer = (state = initialstate, action) => {
                 ...state,
                 newPostText: action.newPostText,
             }
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             break;
     }
@@ -46,3 +52,8 @@ const profileReducer = (state = initialstate, action) => {
 }
 
 export default profileReducer
+
+export const newPostActionCreator = () => ({ type: ADD_POST })
+export const onPostChangeActionCreator = (text) => ({ type: UPDATE_POST_TEXT, newPostText: text })
+export const onPostTitleChangeActionCreator = (text) => ({ type: UPDATE_POST_TITLE, newPostTitleText: text })
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })

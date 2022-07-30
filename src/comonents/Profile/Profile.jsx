@@ -3,13 +3,14 @@ import wallpaper from '../../img/wallpaper.jpg'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 
-function Profile({ ...props }) {
+function Profile({ profile, ...props }) {
+
     return (
         <div>
             <div className={style.wallpaper}>
                 <img src={wallpaper} />
             </div>
-            <ProfileInfo />
+            <ProfileInfo profile={profile} />
             <MyPostsContainer />
         </div >
     )

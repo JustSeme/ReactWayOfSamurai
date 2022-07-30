@@ -1,5 +1,5 @@
 import Dialogs from './Dialogs'
-import { onMessageChangeActionCreator, newMessageActionCreator } from '../../redux/store'
+import { onMessageChangeActionCreator, newMessageActionCreator } from '../../redux/dialogsReducer'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => {

@@ -1,5 +1,5 @@
 import PostForm from './PostForm';
-import { newPostActionCreator, onPostChangeActionCreator, onPostTitleChangeActionCreator } from '../../../redux/store';
+import { newPostActionCreator, onPostChangeActionCreator, onPostTitleChangeActionCreator } from '../../../redux/profileReducer';
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => ({

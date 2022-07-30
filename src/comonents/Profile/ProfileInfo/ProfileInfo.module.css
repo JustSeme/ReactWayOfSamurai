@@ -1,0 +1,33 @@
+.profileAvatar {
+    border-radius: 20px;
+}
+
+.profileWrapper {
+    display: grid;
+    grid-template-columns: 300px 200px 200px;
+    gap: 10px
+}
+
+.contacts span {
+    display: flex;
+}
+
+.contacts img {
+    max-width: 25px;
+    max-height: 25px;
+    display: block;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.contacts a {
+    color: black;
+    font-size: 17px;
+    display: block;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
