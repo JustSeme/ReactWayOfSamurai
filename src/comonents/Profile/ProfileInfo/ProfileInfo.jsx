@@ -11,18 +11,17 @@ import youtubeIcon from '../../../img/icons/youtube.png'
 import websiteIcon from '../../../img/icons/website.png'
 import lookingForAJob from '../../../img/icons/lookingForAJob.jpg'
 import notLookingForAJob from '../../../img/icons/notLookingForAJob.png'
+import noAvatar from '../../../img/noAvatar.jpg'
 
 const ProfileInfo = ({ profile, ...props }) => {
     if (!profile) {
         return <MyPreloader />
     }
 
-    console.log(profile);
-
     return (
         <div className={styles.profileWrapper}>
             <div>
-                <img className={styles.profileAvatar} src={profile.photos.large} />
+                <img className={styles.profileAvatar} src={profile.photos.large ? profile.photos.large : noAvatar} />
                 <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{profile.fullName}</p>
                 <p>{profile.aboutMe}</p>
             </div>
