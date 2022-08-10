@@ -1,4 +1,5 @@
 import veronika from '../img/avatar.png'
+import { profileAPI } from '../api/api'
 
 const ADD_POST = 'ADD_POST'
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
@@ -58,3 +59,10 @@ export const newPostActionCreator = () => ({ type: ADD_POST })
 export const onPostChangeActionCreator = (text) => ({ type: UPDATE_POST_TEXT, newPostText: text })
 export const onPostTitleChangeActionCreator = (text) => ({ type: UPDATE_POST_TITLE, newPostTitleText: text })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
+
+export const getProfile = (userId) => (dispatch) => {
+    profileAPI.getProfile(userId)
+        .then(data => {
+            dispatch(setUserProfile(data))
+        })
+}

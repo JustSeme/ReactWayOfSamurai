@@ -3,7 +3,6 @@ import MyButton from '../UI/MyButton/MyButton';
 import noAvatar from '../../img/noAvatar.jpg'
 import styles from './Users.module.css'
 import { NavLink } from 'react-router-dom'
-import { usersAPI } from '../../api/api';
 
 const Users = (props) => {
 
@@ -36,20 +35,10 @@ const Users = (props) => {
                         </div>
                         <div>
                             {user.followed
-                                ? <MyButton onClick={() => {
-                                    usersAPI.unfollowRequest(user.id).then(data => {
-                                        if (data.resultCode == 0) {
-                                            props.unFollow(user.id)
-                                        }
-                                    })
-                                }}>Unfollow</MyButton>
-                                : <MyButton onClick={() => {
-                                    usersAPI.followRequest(user.id).then(data => {
-                                        if (data.resultCode == 0) {
-                                            props.follow(user.id)
-                                        }
-                                    })
-                                }}>Follow</MyButton>}
+                                ? <MyButton disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => { props.unFollow(user.id) }}
+                                >Unfollow</MyButton>
+                                : <MyButton disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => { props.follow(user.id) }}
+                                >Follow</MyButton>}
                         </div>
                     </span>
                     <span className={styles.userInfo}>

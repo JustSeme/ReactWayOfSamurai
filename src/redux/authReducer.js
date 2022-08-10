@@ -1,3 +1,5 @@
+import { headerAPI } from "../api/api"
+
 const SET_USER_DATA = 'SET_USER_DATA'
 const TOGGLE_IS_AUTH = 'TOGGLE_IS_AUTH'
 
@@ -34,5 +36,16 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, userData: { userId, email, login } })
 export const toggleIsAuth = () => ({ type: TOGGLE_IS_AUTH })
+
+export const auth = () => (dispatch) => {
+    headerAPI.authMe()
+        .then(data => {
+            if (data.resultCode === 0) {
+                const { id, login, email } = data.data
+                dispatch(setAuthUserData(id, email, login))
+                dispatch(toggleIsAuth())
+            }
+        })
+}
 
 export default authReducer

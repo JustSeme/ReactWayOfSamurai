@@ -18,6 +18,10 @@
     box-shadow: 0 0 0 4px #cbd6ee;
 }
 
+.button:disabled {
+    background: #34579eb4;
+}
+
 .button {
     min-width: 100px;
 }

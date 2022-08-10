@@ -19,3 +19,15 @@ export const usersAPI = {
         return instance.delete(`follow/${id}`).then(response => response.data)
     }
 }
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`).then(response => response.data)
+    }
+}
+
+export const headerAPI = {
+    authMe() {
+        return instance.get(`auth/me`).then(response => response.data)
+    }
+}
