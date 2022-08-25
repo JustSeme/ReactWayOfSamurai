@@ -31,3 +31,9 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
+
+.status {
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding: 5px;
+}

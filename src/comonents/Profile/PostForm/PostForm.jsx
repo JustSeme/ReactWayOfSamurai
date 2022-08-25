@@ -2,8 +2,11 @@ import React from 'react';
 import MyButton from "../../UI/MyButton/MyButton";
 import MyInput from '../../UI/MyInput/MyInput';
 import style from './PostForm.module.css';
+import { Form, Field } from 'react-final-form'
+import { composeValidators, maxLengthCreator, required } from '../../../utils/validators';
+import MyTextarea from '../../UI/MyTextarea/MyTextarea';
 
-const PostForm = ({ onCreatePost, onChangePostText, onChangePostTitle, profilePage, ...props }) => {
+const PostForm = ({ onCreatePost, profilePage, ...props }) => {
     /* const [title, setUsername] = useState('')
     const [body, setMessage] = useState('')
     const keyMessages = {
@@ -59,18 +62,53 @@ const PostForm = ({ onCreatePost, onChangePostText, onChangePostTitle, profilePa
         setMessage('')
     }, [posts]) */
 
+    const onSubmit = (formData) => {
+        onCreatePost(formData.newPostText, formData.newPostTitleText)
+        formData.newPostText = ''
+        formData.newPostTitleText = ''
+    }
+
+    const validate = (formData) => {
+        const errors = {}
+
+        if (!formData.newPostText)
+
+
+            return errors
+    }
+
     return (
-        <div className={style.newPost}>
-            <MyInput
-                value={profilePage.newPostTitleText}
-                onChange={e => onChangePostTitle(e.target.value)}
-                placeholder='Ваше имя'
-            />
-            <textarea className={style.textarea} value={profilePage.newPostText} placeholder="Новый пост" cols="100" rows="4" onChange={e => onChangePostText(e.target.value)} />
-            <div>
-                <MyButton onClick={onCreatePost}>Создать пост</MyButton>
-            </div>
-        </div>
+        <Form
+            onSubmit={onSubmit}
+            validate={validate}
+            render={({ handleSubmit }) => (
+                <form className={style.newPost} onSubmit={handleSubmit}>
+                    <Field
+                        name='newPostTitleText'
+                        render={({ input, meta }) => (
+                            <MyInput
+                                {...input}
+                                placeholder='Ваше имя'
+                            />
+                        )}
+                    />
+                    <Field
+                        validate={composeValidators(required, maxLengthCreator(50))}
+                        name='newPostText'
+                        component={MyTextarea}
+
+                        className={style.textarea}
+                        cols="100" rows="4"
+                        placeholder='Введите текст...'
+                    />
+                    <div>
+                        <MyButton>Создать пост</MyButton>
+                    </div>
+                </form>
+            )}
+        >
+
+        </Form >
     );
 };
 

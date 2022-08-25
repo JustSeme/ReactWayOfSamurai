@@ -12,8 +12,9 @@ import websiteIcon from '../../../img/icons/website.png'
 import lookingForAJob from '../../../img/icons/lookingForAJob.jpg'
 import notLookingForAJob from '../../../img/icons/notLookingForAJob.png'
 import noAvatar from '../../../img/noAvatar.jpg'
+import ProfileStatus from './ProfileStatus';
 
-const ProfileInfo = ({ profile, ...props }) => {
+const ProfileInfo = ({ profile, status, updateStatus, ...props }) => {
     if (!profile) {
         return <MyPreloader />
     }
@@ -24,6 +25,7 @@ const ProfileInfo = ({ profile, ...props }) => {
                 <img className={styles.profileAvatar} src={profile.photos.large ? profile.photos.large : noAvatar} />
                 <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{profile.fullName}</p>
                 <p>{profile.aboutMe}</p>
+                <ProfileStatus status={status} updateStatus={updateStatus} />
             </div>
             <div className={styles.contacts}>
                 <p style={{ fontWeight: 'bold' }}>Contacts:</p>

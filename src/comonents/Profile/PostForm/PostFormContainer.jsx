@@ -7,14 +7,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onChangePostTitle: (text) => {
-        dispatch(onPostTitleChangeActionCreator(text))
-    },
-    onChangePostText: (text) => {
-        dispatch(onPostChangeActionCreator(text))
-    },
-    onCreatePost: () => {
-        dispatch(newPostActionCreator())
+    onCreatePost: (newPostText, newPostTitleText) => {
+        dispatch(newPostActionCreator(newPostText, newPostTitleText))
     },
 })
 

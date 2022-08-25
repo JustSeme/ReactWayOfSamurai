@@ -1,4 +1,4 @@
-import { headerAPI } from "../api/api"
+import { authAPI } from "../api/api"
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const TOGGLE_IS_AUTH = 'TOGGLE_IS_AUTH'
@@ -38,11 +38,20 @@ export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA,
 export const toggleIsAuth = () => ({ type: TOGGLE_IS_AUTH })
 
 export const auth = () => (dispatch) => {
-    headerAPI.authMe()
+    authAPI.authMe()
         .then(data => {
             if (data.resultCode === 0) {
                 const { id, login, email } = data.data
                 dispatch(setAuthUserData(id, email, login))
+                dispatch(toggleIsAuth())
+            }
+        })
+}
+
+export const login = (loginData) => (dispatch) => {
+    authAPI.login(loginData)
+        .then(data => {
+            if (data.resultCode === 0) {
                 dispatch(toggleIsAuth())
             }
         })

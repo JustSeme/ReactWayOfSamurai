@@ -23,11 +23,26 @@ export const usersAPI = {
 export const profileAPI = {
     getProfile(userId) {
         return instance.get(`profile/${userId}`).then(response => response.data)
+    },
+    getUserStatus(userId) {
+        return instance.get(`profile/status/${userId}`).then(response => response.data)
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status`, { status }).then(response => response.data)
     }
 }
 
-export const headerAPI = {
+export const authAPI = {
     authMe() {
         return instance.get(`auth/me`).then(response => response.data)
+    },
+    login(loginData) {
+        const body = {
+            email: loginData.email,
+            password: loginData.password,
+            rememberMe: loginData.rememberMe,
+            captcha: false
+        }
+        return instance.post(`auth/login`, body).then(response => response.data)
     }
 }
