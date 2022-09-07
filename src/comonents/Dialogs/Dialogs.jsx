@@ -25,7 +25,7 @@ function Dialogs({ dialogsPage, newMessage, isAuth, ...props }) {
                 {messagesElements}
                 <Form
                     onSubmit={onSubmit}
-                    render={({ handleSubmit }) => (
+                    render={({ handleSubmit, invalid }) => (
                         <form className={style.messageForm} onSubmit={handleSubmit}>
                             <Field
                                 validate={composeValidators(required, maxLengthCreator(50))}
@@ -34,7 +34,7 @@ function Dialogs({ dialogsPage, newMessage, isAuth, ...props }) {
 
                                 placeholder='Введите сообщение...'
                             />
-                            <MyButton>Отправить сообщение</MyButton>
+                            <MyButton disabled={invalid}>Отправить сообщение</MyButton>
                         </form>
                     )}
                 >

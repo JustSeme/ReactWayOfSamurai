@@ -81,7 +81,7 @@ const PostForm = ({ onCreatePost, profilePage, ...props }) => {
         <Form
             onSubmit={onSubmit}
             validate={validate}
-            render={({ handleSubmit }) => (
+            render={({ handleSubmit, invalid }) => (
                 <form className={style.newPost} onSubmit={handleSubmit}>
                     <Field
                         name='newPostTitleText'
@@ -102,7 +102,7 @@ const PostForm = ({ onCreatePost, profilePage, ...props }) => {
                         placeholder='Введите текст...'
                     />
                     <div>
-                        <MyButton>Создать пост</MyButton>
+                        <MyButton disabled={invalid}>Создать пост</MyButton>
                     </div>
                 </form>
             )}

@@ -2,6 +2,7 @@
     grid-area: header;
     border-radius: 10px;
     background-color: var(--main-bg-color);
+    min-height: 40px;
 }
 
 .header img {
@@ -13,4 +14,9 @@
     float: right;
     font-size: 16px;
     padding: 5px;
+}
+
+.userLogin {
+    margin: 5px;
+    color: white;
 }
