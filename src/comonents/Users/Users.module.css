@@ -1,5 +1,16 @@
+.pageNumber {
+    line-height: 38px;
+    min-width: 38px;
+    margin: 2.5px;
+    padding: 2.5px;
+    font-size: 20px;
+}
+
 .selectedPage {
+    font-size: 24px;
     font-weight: bold;
+    border-radius: 19px;
+    background: var(--light-blue-color);
 }
 
 .user {

@@ -3,7 +3,7 @@ import Users from './Users';
 import { connect } from 'react-redux'
 import { acceptFollow, setCurrentPage, acceptUnfollow, toggleFollowing, getUsers, follow, unFollow } from '../../redux/userReducer';
 import MyPreloader from '../UI/MyPreloader/MyPreloader';
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsersSelector } from '../../redux/usersSelectors';
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsersSelector, } from '../../redux/usersSelectors';
 
 class UsersContainer extends React.Component {
 
@@ -18,6 +18,7 @@ class UsersContainer extends React.Component {
 
 
     render() {
+        console.log('render');
         return <>
             {this.props.isFetching ? <MyPreloader /> : null}
             <Users
@@ -46,6 +47,7 @@ class UsersContainer extends React.Component {
 } */
 
 const mapStateToProps = state => {
+    console.log('mapStateToProps');
     return {
         usersData: getUsersSelector(state),
         pageSize: getPageSize(state),

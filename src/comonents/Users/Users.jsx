@@ -22,7 +22,7 @@ const Users = (props) => {
         <div>
             <div>
                 {slicedPages.map((page) => {
-                    return <span key={page} onClick={() => props.onPageChanged(page)} className={page === props.currentPage ? styles.selectedPage : ''}>{page}</span>
+                    return <span key={page} onClick={() => props.onPageChanged(page)} className={page === props.currentPage ? styles.pageNumber + ' ' + styles.selectedPage : styles.pageNumber}>{page}</span>
                 })}
             </div>
             {
