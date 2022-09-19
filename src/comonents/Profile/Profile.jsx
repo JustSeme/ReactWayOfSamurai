@@ -1,5 +1,3 @@
-import style from './Profile.module.css'
-import wallpaper from '../../img/wallpaper.jpg'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 

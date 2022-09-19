@@ -13,6 +13,7 @@ import lookingForAJob from '../../../img/icons/lookingForAJob.jpg'
 import notLookingForAJob from '../../../img/icons/notLookingForAJob.png'
 import noAvatar from '../../../img/noAvatar.jpg'
 import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWIthHooks';
 
 const ProfileInfo = ({ profile, status, updateStatus, ...props }) => {
     if (!profile) {
@@ -25,7 +26,7 @@ const ProfileInfo = ({ profile, status, updateStatus, ...props }) => {
                 <img className={styles.profileAvatar} src={profile.photos.large ? profile.photos.large : noAvatar} />
                 <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{profile.fullName}</p>
                 <p>{profile.aboutMe}</p>
-                <ProfileStatus status={status} updateStatus={updateStatus} />
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
             </div>
             <div className={styles.contacts}>
                 <p style={{ fontWeight: 'bold' }}>Contacts:</p>
