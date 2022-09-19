@@ -12,13 +12,14 @@ import websiteIcon from '../../../img/icons/website.png'
 import lookingForAJob from '../../../img/icons/lookingForAJob.jpg'
 import notLookingForAJob from '../../../img/icons/notLookingForAJob.png'
 import noAvatar from '../../../img/noAvatar.jpg'
-import ProfileStatus from './ProfileStatus';
 import ProfileStatusWithHooks from './ProfileStatusWIthHooks';
+import ProfileIcon from './ProfileIcon';
 
 const ProfileInfo = ({ profile, status, updateStatus, ...props }) => {
     if (!profile) {
         return <MyPreloader />
     }
+    const icons = [facebookIcon, gitHubIcon, instagramIcon, twitterIcon, vkIcon, mainLinkIcon, youtubeIcon, websiteIcon]
 
     return (
         <div className={styles.profileWrapper}>
@@ -30,38 +31,14 @@ const ProfileInfo = ({ profile, status, updateStatus, ...props }) => {
             </div>
             <div className={styles.contacts}>
                 <p style={{ fontWeight: 'bold' }}>Contacts:</p>
-                <span>
-                    <img src={facebookIcon} />
-                    <a href={'https://' + profile.contacts.facebook}>{profile.contacts.facebook}</a>
-                </span>
-                <span>
-                    <img src={gitHubIcon} />
-                    <a href={'https://' + profile.contacts.github}>{profile.contacts.github}</a>
-                </span>
-                <span>
-                    <img src={instagramIcon} />
-                    <a href={'https://' + profile.contacts.instagram}>{profile.contacts.instagram}</a>
-                </span>
-                <span>
-                    <img src={twitterIcon} />
-                    <a href={profile.contacts.twitter}>{profile.contacts.twitter}</a>
-                </span>
-                <span>
-                    <img src={vkIcon} />
-                    <a href={'https://' + profile.contacts.vk}>{profile.contacts.vk}</a>
-                </span>
-                <span>
-                    <img src={mainLinkIcon} />
-                    <a href={'https://' + profile.contacts.mainLink}>{profile.contacts.mainLink}</a>
-                </span>
-                <span>
-                    <img src={youtubeIcon} />
-                    <a href={'https://' + profile.contacts.youtube}>{profile.contacts.youtube}</a>
-                </span>
-                <span>
-                    <img src={websiteIcon} />
-                    <a href={'https://' + profile.contacts.website}>{profile.contacts.website}</a>
-                </span>
+                <ProfileIcon iconSrc={icons[0]} href={profile.contacts.facebook} />
+                <ProfileIcon iconSrc={icons[1]} href={profile.contacts.gitHub} />
+                <ProfileIcon iconSrc={icons[2]} href={profile.contacts.instagram} />
+                <ProfileIcon iconSrc={icons[3]} href={profile.contacts.mainLink} />
+                <ProfileIcon iconSrc={icons[4]} href={profile.contacts.twitter} />
+                <ProfileIcon iconSrc={icons[5]} href={profile.contacts.vk} />
+                <ProfileIcon iconSrc={icons[6]} href={profile.contacts.website} />
+                <ProfileIcon iconSrc={icons[7]} href={profile.contacts.youtube} />
             </div>
             <div>
                 <p style={{ fontWeight: 'bold' }}>For a job:</p>

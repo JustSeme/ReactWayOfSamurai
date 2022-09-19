@@ -1,4 +1,4 @@
-const ADD_MESSAGE = 'ADD_MESSAGE'
+const ADD_MESSAGE = 'dialogs/ADD_MESSAGE'
 
 const initialState = {
     dialogsData: [
