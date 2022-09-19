@@ -31,14 +31,8 @@ const ProfileInfo = ({ profile, status, updateStatus, ...props }) => {
             </div>
             <div className={styles.contacts}>
                 <p style={{ fontWeight: 'bold' }}>Contacts:</p>
-                <ProfileIcon iconSrc={icons[0]} href={profile.contacts.facebook} />
-                <ProfileIcon iconSrc={icons[1]} href={profile.contacts.gitHub} />
-                <ProfileIcon iconSrc={icons[2]} href={profile.contacts.instagram} />
-                <ProfileIcon iconSrc={icons[3]} href={profile.contacts.mainLink} />
-                <ProfileIcon iconSrc={icons[4]} href={profile.contacts.twitter} />
-                <ProfileIcon iconSrc={icons[5]} href={profile.contacts.vk} />
-                <ProfileIcon iconSrc={icons[6]} href={profile.contacts.website} />
-                <ProfileIcon iconSrc={icons[7]} href={profile.contacts.youtube} />
+                {Object.entries(profile.contacts).map((contact, index) =>
+                    <ProfileIcon iconSrc={icons[index]} href={contact[1]} key={index} />)}
             </div>
             <div>
                 <p style={{ fontWeight: 'bold' }}>For a job:</p>
