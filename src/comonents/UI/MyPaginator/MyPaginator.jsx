@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './MyPaginator.module.css'
 
-const Paginator = ({ currentPage, onPageChanged, totalUsersCount, pageSize, props }) => {
+const MyPaginator = ({ currentPage, onPageChanged, totalUsersCount, pageSize, ...props }) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
 
@@ -10,8 +10,8 @@ const Paginator = ({ currentPage, onPageChanged, totalUsersCount, pageSize, prop
     }
 
     let curP = currentPage;
-    let curPF = ((curP - 3) < 0) ? 0 : curP - 3;
-    let curPL = curP + 2;
+    let curPF = ((curP - 7) < 0) ? 0 : curP - 7;
+    let curPL = curP + 7;
     let slicedPages = pages.slice(curPF, curPL);
     return (
         <div>
@@ -22,4 +22,4 @@ const Paginator = ({ currentPage, onPageChanged, totalUsersCount, pageSize, prop
     );
 };
 
-export default Paginator;
+export default MyPaginator;
