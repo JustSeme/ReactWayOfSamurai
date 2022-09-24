@@ -15,16 +15,23 @@ import noAvatar from '../../../img/noAvatar.jpg'
 import ProfileStatusWithHooks from './ProfileStatusWIthHooks';
 import ProfileIcon from './ProfileIcon';
 
-const ProfileInfo = ({ profile, status, updateStatus, ...props }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, ...props }) => {
     if (!profile) {
         return <MyPreloader />
     }
     const icons = [facebookIcon, gitHubIcon, instagramIcon, twitterIcon, vkIcon, mainLinkIcon, youtubeIcon, websiteIcon]
 
+    const onPhotoChanged = (e) => {
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div className={styles.profileWrapper}>
             <div>
-                <img className={styles.profileAvatar} src={profile.photos.large ? profile.photos.large : noAvatar} />
+                <img className={styles.profileAvatar} src={profile.photos.large || noAvatar} />
+                {isOwner && <input type='file' onChange={onPhotoChanged} />}
                 <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{profile.fullName}</p>
                 <p>{profile.aboutMe}</p>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
