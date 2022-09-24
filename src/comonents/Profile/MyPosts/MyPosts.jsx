@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import PostFormContainer from "../PostForm/PostFormContainer";
 
 function MyPosts({ postsData, ...props }) {
-    const postsElements = postsData ? [...postsData].reverse().map((post) => <Post post={post} key={post.id} />) : ''
+    const postsElements = postsData ? [...postsData].map((post) => <Post post={post} key={post.id} />) : ''
 
     return (
         <div>

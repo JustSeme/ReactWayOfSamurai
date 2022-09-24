@@ -1,6 +1,7 @@
 import React from 'react';
 import MyInput from '../UI/MyInput/MyInput'
-import style from '../UI/MyInput/MyInput.module.css'
+import errorStyle from '../UI/MyInput/MyInput.module.css'
+import buttonStyle from '../UI/MyButton/MyButton.module.css'
 import MyButton from '../UI/MyButton/MyButton'
 import { required } from '../../utils/validators'
 import { Form, Field } from 'react-final-form'
@@ -17,6 +18,8 @@ const Login = ({ login, isAuth, isCaptcha, ...props }) => {
         <div>
             <h1>Login</h1>
             <LoginForm login={login} isCaptcha={isCaptcha} />
+            <p style={{ 'fontSize': '17px' }}>Авторизация реализована с использованием серверного API social-network-samuraiJS.</p>
+            <a className={buttonStyle.button} href='https://social-network.samuraijs.com/signUp'>Зарегистрироваться</a>
         </div>
     );
 };
@@ -67,7 +70,7 @@ const LoginForm = ({ login, isCaptcha, ...props }) => {
                         : ''
                     }
                     {submitError ?
-                        <div className={style.formSummaryError}>
+                        <div className={errorStyle.formSummaryError}>
                             {submitError}
                         </div> : ''}
                     <div>
