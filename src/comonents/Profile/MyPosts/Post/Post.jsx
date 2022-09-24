@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import style from './Post.module.css'
 import noAvatar from '../../../../img/noAvatar.jpg'
-import axios from 'axios'
 
 function Post({ post }) {
 

@@ -6,6 +6,7 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
 const SET_STATUS = 'profile/SET_STATUS'
 const DELETE_POST = 'profile/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
+const UPDATE_PROFILE_INFO_SUCCESS = 'profile/UPDATE_PROFILE_INFO_SUCCESS'
 
 const initialstate = {
     postsData: [
@@ -49,6 +50,17 @@ const profileReducer = (state = initialstate, action) => {
                 ...state,
                 profile: { ...state.profile, photos: action.photos }
             }
+        case UPDATE_PROFILE_INFO_SUCCESS:
+            return {
+                ...state,
+                profile: {
+                    ...state.profile, aboutMe: action.newProfileInfo.aboutMe,
+                    contacts: { ...action.newProfileInfo.contacts },
+                    fullName: action.newProfileInfo.fullName,
+                    lookingForAJob: action.newProfileInfo.lookingForAJob,
+                    lookingForAJobDescription: action.newProfileInfo.lookingForAJobDescription
+                }
+            }
         default:
             break;
     }
@@ -63,6 +75,7 @@ export const deletePost = (postId) => ({ type: DELETE_POST, postId })
 const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 const setUserStatus = (status) => ({ type: SET_STATUS, status })
 const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos })
+const updateProfileInfoSuccess = (newProfileInfo) => ({ type: UPDATE_PROFILE_INFO_SUCCESS, newProfileInfo })
 
 export const getProfile = (userId) => async (dispatch) => {
     let data = await profileAPI.getProfile(userId)
@@ -85,5 +98,12 @@ export const savePhoto = (file) => async (dispatch) => {
     let data = await profileAPI.savePhoto(file)
     if (data.resultCode === 0) {
         dispatch(savePhotoSuccess(data.data.photos))
+    }
+}
+
+export const updateProfileInfo = (newProfileInfo) => async (dispatch) => {
+    let data = await profileAPI.updateProfileInfo(newProfileInfo)
+    if (data.resultCode === 0) {
+        dispatch(updateProfileInfoSuccess(data.data))
     }
 }

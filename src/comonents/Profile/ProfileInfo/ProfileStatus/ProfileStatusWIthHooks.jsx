@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import MyInput from '../../UI/MyInput/MyInput';
-import styles from './ProfileInfo.module.css'
+import MyInput from '../../../UI/MyInput/MyInput';
+import styles from '../ProfileInfo.module.css'
 
 const ProfileStatusWithHooks = ({ status, updateStatus, ...props }) => {
     const [editMode, setEditMode] = useState(false)

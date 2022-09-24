@@ -37,3 +37,30 @@
     margin-bottom: 5px;
     padding: 5px;
 }
+
+.inputWrapper {
+    width: 100%;
+    position: relative;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.fileInput {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.labelBtn {
+    cursor: pointer;
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: var(--secondary-color);
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.profileButtonsWrapper {
+    text-align: center;
+}
