@@ -1,20 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './MyModal.module.css'
 import MyButton from '../MyButton/MyButton'
+import ReactDOM from 'react-dom'
 
 const MyModal = ({ show, onClose, children, title }) => {
-    useEffect(() => {
-        document.body.addEventListener('keydown', closeOnEscapeKeyDown)
-        return function cleanup() {
-            document.body.removeEventListener('keydown', closeOnEscapeKeyDown)
-        }
-    }, [])
 
-    function closeOnEscapeKeyDown(e) {
-        if ((e.charCode || e.keyCode) === 27) onClose()
-    }
-
-    return (
+    return ReactDOM.createPortal(
         <div className={styles.modal + ` ${show ? styles.show : ''}`} onClick={onClose} >
             <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.modalHeader}>
@@ -27,7 +18,8 @@ const MyModal = ({ show, onClose, children, title }) => {
                     <MyButton onClick={onClose}>Close</MyButton>
                 </div>
             </div>
-        </div >
+        </div>,
+        document.getElementById('root')
     );
 };
 

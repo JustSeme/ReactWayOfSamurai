@@ -40,7 +40,7 @@ export const profileAPI = {
         }).then(response => response.data)
     },
     updateProfileInfo(newProfileInfo) {
-        return instance.put(`/profile`, { newProfileInfo })
+        return instance.put(`/profile`, { newProfileInfo }).then(response => response.data)
     }
 }
 

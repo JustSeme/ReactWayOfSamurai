@@ -104,6 +104,7 @@ export const savePhoto = (file) => async (dispatch) => {
 export const updateProfileInfo = (newProfileInfo) => async (dispatch) => {
     let data = await profileAPI.updateProfileInfo(newProfileInfo)
     if (data.resultCode === 0) {
+        console.log(data);
         dispatch(updateProfileInfoSuccess(data.data))
     }
 }

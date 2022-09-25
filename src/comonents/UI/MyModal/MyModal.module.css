@@ -1,4 +1,5 @@
 .modal {
+    z-index: 100;
     position: fixed;
     left: 0;
     top: 0;
@@ -18,9 +19,16 @@
     pointer-events: visible;
 }
 
+.modal.show .modalContent {
+    transform: translateY(0);
+}
+
 .modalContent {
-    width: 500px;
+    max-width: 90%;
     background-color: #fff;
+    transform: translateY(-200px);
+    transition: all 0.4s ease-in-out;
+    border-radius: 10px;
 }
 
 .modalHeader {

@@ -3,6 +3,13 @@
     border: 2px solid red;
 }
 
+.formControl textarea {
+    font-size: 18px;
+    resize: none;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
 .formControl.error span {
     color: red
 }

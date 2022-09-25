@@ -1,10 +1,3 @@
 .newPost>* {
     margin: 10px 0;
 }
-
-.textarea {
-    font-size: 18px;
-    resize: none;
-    padding: 5px 15px;
-    border-radius: 10px;
-}

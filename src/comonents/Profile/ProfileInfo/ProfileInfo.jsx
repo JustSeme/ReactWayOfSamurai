@@ -7,7 +7,7 @@ import UpdatePhotoInput from './UpdatePhotoInput/UpdatePhotoInput';
 import ForAJob from './ForAJob/ForAJob';
 import Contacts from './Contacts/Contacts';
 import MyModal from '../../UI/MyModal/MyModal'
-import MyButton from '../../UI/MyButton/MyButton'
+import ProfileInfoForm from './ProfileInfoForm/ProfileInfoForm';
 
 const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, updateProfileInfo }) => {
     const [show, setShow] = useState(false)
@@ -28,7 +28,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, update
                 <p>{profile.aboutMe}</p>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
                 <MyModal title='Редактирование профиля' onClose={() => setShow(false)} show={show}>
-                    <p>Modal body</p>
+                    <ProfileInfoForm profile={profile} updateProfileInfo={updateProfileInfo} />
                 </MyModal>
             </div>
             <Contacts contacts={profile.contacts} />

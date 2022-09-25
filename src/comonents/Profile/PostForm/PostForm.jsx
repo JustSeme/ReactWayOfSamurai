@@ -33,7 +33,6 @@ const PostForm = ({ onCreatePost, profilePage, ...props }) => {
                         name='newPostText'
                         component={MyTextarea}
 
-                        className={style.textarea}
                         cols="100" rows="4"
                         placeholder='Введите текст...'
                     />
