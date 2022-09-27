@@ -32,7 +32,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, update
                 </div>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
                 <MyModal title='Редактирование профиля' onClose={() => setShow(false)} show={show}>
-                    <ProfileInfoForm profile={profile} updateProfileInfo={updateProfileInfo} />
+                    <ProfileInfoForm onClose={() => setShow(false)} profile={profile} updateProfileInfo={updateProfileInfo} />
                 </MyModal>
             </div>
             <Contacts contacts={profile.contacts} />

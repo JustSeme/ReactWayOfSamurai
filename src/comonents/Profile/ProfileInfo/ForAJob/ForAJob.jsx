@@ -7,8 +7,10 @@ const ForAJob = ({ lookingForAJob, lookingForAJobDescription }) => {
         <div>
             <p style={{ fontWeight: 'bold' }}>For a job:</p>
             <img src={lookingForAJob ? lookingForAJobIcon : notLookingForAJobIcon} />
-            <p>{lookingForAJobDescription}</p>
-        </div>
+            <div>
+                <b>My professional skills: </b><br></br>{lookingForAJobDescription}
+            </div>
+        </div >
     );
 };
 
