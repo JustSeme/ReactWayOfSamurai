@@ -22,10 +22,14 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, update
                 <img className={styles.profileAvatar} src={profile.photos.large || noAvatar} />
                 <div className={styles.profileButtonsWrapper}>
                     {isOwner && <UpdatePhotoInput savePhoto={savePhoto} />}
-                    <button onClick={() => setShow(true)} className={styles.labelBtn}>Редактировать профиль</button>
+                    {isOwner && <button onClick={() => setShow(true)} className={styles.labelBtn}>Редактировать профиль</button>}
                 </div>
-                <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{profile.fullName}</p>
-                <p>{profile.aboutMe}</p>
+                <div>
+                    <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{profile.fullName}</p>
+                </div>
+                <div>
+                    <b>About Me: </b>{profile.aboutMe}
+                </div>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
                 <MyModal title='Редактирование профиля' onClose={() => setShow(false)} show={show}>
                     <ProfileInfoForm profile={profile} updateProfileInfo={updateProfileInfo} />

@@ -12,7 +12,7 @@ import websiteIcon from '../../../../img/icons/website.png'
 
 const Contacts = ({ contacts }) => {
 
-    const icons = [facebookIcon, gitHubIcon, instagramIcon, twitterIcon, vkIcon, mainLinkIcon, youtubeIcon, websiteIcon]
+    const icons = [facebookIcon, mainLinkIcon, vkIcon, twitterIcon, instagramIcon, youtubeIcon, gitHubIcon, websiteIcon]
     return (
         <div className={styles.contacts}>
             <p style={{ fontWeight: 'bold' }}>Contacts:</p>

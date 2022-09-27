@@ -7,11 +7,10 @@ import styles from './ProfileInfoForm.module.css'
 import { maxLengthCreator } from '../../../../utils/validators'
 
 const ProfileInfoForm = ({ profile, updateProfileInfo }) => {
-    console.log(profile);
     const [username, setUsername] = useState(profile.fullName)
     const [lookingForAJobDescription, setlookingForAJobDescription] = useState(profile.lookingForAJobDescription)
     const [aboutMe, setAboutMe] = useState(profile.aboutMe)
-    const [gitHubLink, setGitHubLink] = useState(profile.contacts.gitHub)
+    const [gitHubLink, setGitHubLink] = useState(profile.contacts.github)
     const [vkLink, setVkLink] = useState(profile.contacts.vk)
     const [facebookLink, setFacebookLink] = useState(profile.contacts.facebook)
     const [instagramLink, setInstagramLink] = useState(profile.contacts.instagram)
@@ -159,8 +158,8 @@ const ProfileInfoForm = ({ profile, updateProfileInfo }) => {
                             <MyTextarea
                                 input={input}
                                 meta={meta}
-                                value={lookingForAJobDescription}
-                                onChange={(e) => setlookingForAJobDescription(e.target.value)}
+                                value={aboutMe}
+                                onChange={(e) => setAboutMe(e.target.value)}
                                 cols="50" rows="2"
                                 placeholder='Обо мне'
                             />
@@ -173,24 +172,27 @@ const ProfileInfoForm = ({ profile, updateProfileInfo }) => {
                             <MyTextarea
                                 input={input}
                                 meta={meta}
-                                value={aboutMe}
-                                onChange={(e) => setAboutMe(e.target.value)}
+                                value={lookingForAJobDescription}
+                                onChange={(e) => setlookingForAJobDescription(e.target.value)}
                                 cols="50" rows="2"
-                                placeholder='Описание своих рабочих потребностей'
+                                placeholder='Описание своих рабочих навыков'
                             />
                         )}
                     />
                     <Field
                         name='lookingForAJob'
                         type='checkbox'
-                        render={({ input, meta }) => (
-                            <div style={{ marginBottom: '5px' }}>
+                        value={profile.lookingForAJob}
+                        render={({ input, meta }) => {
+                            console.log(input);
+                            console.log(meta);
+                            return (<div style={{ marginBottom: '5px' }}>
                                 <input {...input} />Ищу работу
-                            </div>
-                        )}
+                            </div>)
+                        }}
                     />
                     <div>
-                        <MyButton disabled={invalid}>Создать пост</MyButton>
+                        <MyButton disabled={invalid}>Сохранить</MyButton>
                     </div>
                 </form>
             )}

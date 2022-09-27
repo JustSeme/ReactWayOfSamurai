@@ -1,12 +1,12 @@
 import React from 'react';
-import lookingForAJob from '../../../../img/icons/lookingForAJob.jpg'
-import notLookingForAJob from '../../../../img/icons/notLookingForAJob.png'
+import lookingForAJobIcon from '../../../../img/icons/lookingForAJob.jpg'
+import notLookingForAJobIcon from '../../../../img/icons/notLookingForAJob.png'
 
 const ForAJob = ({ lookingForAJob, lookingForAJobDescription }) => {
     return (
         <div>
             <p style={{ fontWeight: 'bold' }}>For a job:</p>
-            <img src={lookingForAJob ? lookingForAJob : notLookingForAJob} />
+            <img src={lookingForAJob ? lookingForAJobIcon : notLookingForAJobIcon} />
             <p>{lookingForAJobDescription}</p>
         </div>
     );

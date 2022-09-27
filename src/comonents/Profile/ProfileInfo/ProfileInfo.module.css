@@ -4,12 +4,14 @@
 
 .profileWrapper {
     display: grid;
-    grid-template-columns: 300px 200px 200px;
+    grid-template-columns: 300px 400px 300px;
     gap: 10px
 }
 
 .contacts span {
+    padding-left: 5px;
     display: flex;
+    align-items: center;
 }
 
 .contacts img {
@@ -23,6 +25,7 @@
 }
 
 .contacts a {
+    padding-left: 5px;
     color: black;
     font-size: 17px;
     display: block;

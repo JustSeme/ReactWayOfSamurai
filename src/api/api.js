@@ -40,7 +40,7 @@ export const profileAPI = {
         }).then(response => response.data)
     },
     updateProfileInfo(newProfileInfo) {
-        return instance.put(`/profile`, { newProfileInfo }).then(response => response.data)
+        return instance.put(`profile`, { ...newProfileInfo }).then(response => response.data)
     }
 }
 
@@ -55,6 +55,6 @@ export const authAPI = {
         return instance.delete(`auth/login`).then(response => response.data)
     },
     getCaptcha() {
-        return instance.get(`/security/get-captcha-url`).then(response => response.data)
+        return instance.get(`security/get-captcha-url`).then(response => response.data)
     }
 }

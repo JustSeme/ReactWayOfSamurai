@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProfileIcon = ({ iconSrc, href, ...props }) => {
+const ProfileIcon = ({ iconSrc, href }) => {
     return (
         <span>
             <img src={iconSrc} />
