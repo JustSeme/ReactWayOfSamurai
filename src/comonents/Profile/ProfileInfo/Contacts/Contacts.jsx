@@ -12,12 +12,21 @@ import websiteIcon from '../../../../img/icons/website.png'
 
 const Contacts = ({ contacts }) => {
 
-    const icons = [facebookIcon, mainLinkIcon, vkIcon, twitterIcon, instagramIcon, youtubeIcon, gitHubIcon, websiteIcon]
+    const icons = {
+        facebook: facebookIcon,
+        mainLink: mainLinkIcon,
+        vk: vkIcon,
+        twitter: twitterIcon,
+        instagram: instagramIcon,
+        youtube: youtubeIcon,
+        github: gitHubIcon,
+        website: websiteIcon
+    }
     return (
         <div className={styles.contacts}>
             <p style={{ fontWeight: 'bold' }}>Contacts:</p>
             {Object.entries(contacts).map((contact, index) =>
-                <ProfileIcon iconSrc={icons[index]} href={contact[1]} key={index} />)}
+                <ProfileIcon iconSrc={icons[contact[0]]} href={contact[1]} key={index} />)}
         </div>
     );
 };

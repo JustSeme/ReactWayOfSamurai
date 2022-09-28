@@ -24,7 +24,7 @@ const ProfileStatusWithHooks = ({ status, updateStatus, ...props }) => {
             {
                 !editMode
                     ? <div className={styles.status}>
-                        <span onClick={activateEditMode}>{status || 'Введите статус... '}</span>
+                        <span onClick={activateEditMode}><b>Status: </b>{status || 'Введите статус... '}</span>
                     </div>
                     : <div>
                         <MyInput value={statusText} onChange={e => setStatusText(e.target.value)} autoFocus={true} onBlur={deActivateEditMode} placeholder='Введите статус...' />

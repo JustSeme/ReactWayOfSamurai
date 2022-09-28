@@ -37,8 +37,11 @@
 
 .status {
     font-size: 18px;
-    margin-bottom: 5px;
-    padding: 5px;
+    margin: 5px 0;
+}
+
+.lookingForAJobDescription {
+    margin-top: 10px;
 }
 
 .inputWrapper {
