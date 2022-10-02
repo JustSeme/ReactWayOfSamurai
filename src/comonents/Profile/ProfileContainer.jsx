@@ -14,6 +14,10 @@ class ProfileContainer extends React.Component {
         this.props.getUserStatus(userId)
     }
 
+    componentWillUnmount() {
+        this.props.getUsers(1,)
+    }
+
     componentDidMount() {
         this.refreshProfile()
     }
@@ -42,7 +46,8 @@ const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.userId
+    isAuth: state.auth.userId,
+
 })
 
 export default compose(

@@ -21,7 +21,6 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'FAKE': return { ...state, fake: state.fake + 1 }
         case FOLLOW:
             return {
                 ...state,
@@ -72,7 +71,6 @@ const userReducer = (state = initialState, action) => {
                 }
             }
         case TOGGLE_IS_FOLLOWING_PROGRESS:
-            debugger
             return {
                 ...state,
                 followingInProgress: action.isFetching
