@@ -14,10 +14,6 @@ class ProfileContainer extends React.Component {
         this.props.getUserStatus(userId)
     }
 
-    componentWillUnmount() {
-        this.props.getUsers(1,)
-    }
-
     componentDidMount() {
         this.refreshProfile()
     }
