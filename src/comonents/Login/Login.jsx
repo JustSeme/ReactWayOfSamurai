@@ -19,6 +19,8 @@ const Login = ({ login, isAuth, isCaptcha, ...props }) => {
             <h1>Login</h1>
             <LoginForm login={login} isCaptcha={isCaptcha} />
             <p style={{ 'fontSize': '17px' }}>Авторизация реализована с использованием серверного API social-network-samuraiJS.</p>
+            <p style={{ 'fontSize': '17px' }}>email: semyn03@mail.ru</p>
+            <p style={{ 'fontSize': '17px' }}>password: QWERTY123</p>
             <a className={buttonStyle.button} href='https://social-network.samuraijs.com/signUp'>Зарегистрироваться</a>
         </div>
     );
