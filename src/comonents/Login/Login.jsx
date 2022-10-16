@@ -6,7 +6,7 @@ import MyButton from '../UI/MyButton/MyButton'
 import { required } from '../../utils/validators'
 import { Form, Field } from 'react-final-form'
 import { connect } from 'react-redux';
-import { login } from '../../redux/authReducer';
+import { login } from '../../redux/authReducer.ts';
 import { Navigate } from 'react-router-dom';
 
 const Login = ({ login, isAuth, isCaptcha, ...props }) => {

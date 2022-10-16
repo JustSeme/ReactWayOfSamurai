@@ -6,7 +6,7 @@ import ProfileContainer from './comonents/Profile/ProfileContainer';
 import HeaderContainer from './comonents/Header/HeaderContainer';
 import Login from './comonents/Login/Login';
 import { connect } from 'react-redux';
-import { initializeApp } from './redux/appReducer'
+import { initializeApp } from './redux/appReducer.ts'
 import MyPreloader from './comonents/UI/MyPreloader/MyPreloader'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux';
