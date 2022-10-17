@@ -5,12 +5,30 @@ import MyButton from '../UI/MyButton/MyButton'
 import { Form, Field } from 'react-final-form'
 import MyTextarea from '../UI/MyTextarea/MyTextarea'
 import { maxLengthCreator, required, composeValidators } from '../../utils/validators'
+import { DialogType, MessageType } from '../../types/types'
+import { useSelector } from 'react-redux'
+import { AppStateType } from '../../redux/redux-store'
+import { useDispatch } from 'react-redux'
+import { newMessageActionCreator } from '../../redux/dialogsReducer'
+import WithAuthRedirect from '../HOC/WithAuthRedirect'
 
-function Dialogs({ dialogsPage, newMessage, isAuth, ...props }) {
-    const dialogsElements = dialogsPage.dialogsData ? dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>) : ''
-    const messagesElements = dialogsPage.messagesData ? dialogsPage.messagesData.map(message => <MessageItem key={message.id}>{message.messageText}</MessageItem>) : ''
+const Dialogs = () => {
+    const dialogsData: Array<DialogType> = useSelector((state: AppStateType) => state.dialogsPage.dialogsData)
+    const messagesData: Array<MessageType> = useSelector((state: AppStateType) => state.dialogsPage.messagesData)
 
-    const onSubmit = (formData) => {
+    const dispatch = useDispatch()
+    const newMessage = (newMessageText: string) => {
+        dispatch(newMessageActionCreator(newMessageText))
+    }
+
+    const dialogsElements = dialogsData ? dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}>{dialog.name}</DialogItem>) : ''
+    const messagesElements = messagesData ? messagesData.map(message => <MessageItem key={message.id}>{message.messageText}</MessageItem>) : ''
+
+    type FormDataType = {
+        newMessageText: string
+    }
+
+    const onSubmit = (formData: FormDataType) => {
         newMessage(formData.newMessageText)
         formData.newMessageText = ''
     }
@@ -44,4 +62,4 @@ function Dialogs({ dialogsPage, newMessage, isAuth, ...props }) {
     )
 }
 
-export default Dialogs
+export default WithAuthRedirect(Dialogs)

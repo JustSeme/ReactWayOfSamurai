@@ -1,4 +1,4 @@
-//import veronika from '../img/avatar.png'
+import veronika from '../img/avatar.png'
 import { profileAPI } from '../api/api'
 import { PostType } from '../types/types'
 import { ProfileType } from '../types/types'
@@ -15,7 +15,7 @@ const UPDATE_PROFILE_INFO_SUCCESS = 'profile/UPDATE_PROFILE_INFO_SUCCESS'
 
 const initialState = {
     postsData: [
-        { id: 1, title: 'Вероника', body: 'Всем привет!'/* , avatar: veronika */ },
+        { id: 1, title: 'Вероника', body: 'Всем привет!', avatar: veronika },
         { id: 2, title: 'Егор', body: 'Привет, Вероника!' },
     ] as Array<PostType>,
     profile: null as ProfileType | null,

@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import MyPreloader from '../../UI/MyPreloader/MyPreloader';
 import styles from './ProfileInfo.module.css'
 import noAvatar from '../../../img/noAvatar.jpg'
-import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWIthHooks';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 import UpdatePhotoInput from './UpdatePhotoInput/UpdatePhotoInput';
 import ForAJob from './ForAJob/ForAJob';
 import Contacts from './Contacts/Contacts';
 import MyModal from '../../UI/MyModal/MyModal'
 import ProfileInfoForm from './ProfileInfoForm/ProfileInfoForm';
+import { PropsProfileType } from '../Profile';
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, updateProfileInfo }) => {
+const ProfileInfo: React.FC<PropsProfileType> = ({ profile, status, updateStatus, isOwner, savePhoto, updateProfileInfo }) => {
     const [show, setShow] = useState(false)
+    
 
     if (!profile) {
         return <MyPreloader />
@@ -19,7 +21,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, update
     return (
         <div className={styles.profileWrapper}>
             <div>
-                <img className={styles.profileAvatar} src={profile.photos.large || noAvatar} />
+                <img alt='profile avatar' className={styles.profileAvatar} src={profile.photos.large || noAvatar} />
                 <div className={styles.profileButtonsWrapper}>
                     {isOwner && <UpdatePhotoInput savePhoto={savePhoto} />}
                     {isOwner && <button onClick={() => setShow(true)} className={styles.labelBtn}>Редактировать профиль</button>}
@@ -30,7 +32,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, update
                 <div>
                     <b>About Me: </b>{profile.aboutMe}
                 </div>
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+                <ProfileStatus status={status} updateStatus={updateStatus} />
                 <MyModal title='Редактирование профиля' onClose={() => setShow(false)} show={show}>
                     <ProfileInfoForm onClose={() => setShow(false)} profile={profile} updateProfileInfo={updateProfileInfo} />
                 </MyModal>

@@ -6,10 +6,17 @@ import MyButton from '../UI/MyButton/MyButton'
 import { required } from '../../utils/validators'
 import { Form, Field } from 'react-final-form'
 import { connect } from 'react-redux';
-import { login } from '../../redux/authReducer.ts';
+import { login } from '../../redux/authReducer';
 import { Navigate } from 'react-router-dom';
+import { LoginThunkType } from '../../types/types';
 
-const Login = ({ login, isAuth, isCaptcha, ...props }) => {
+type LoginPropsType = {
+    login: LoginThunkType
+    isAuth: boolean
+    isCaptcha: boolean
+}
+
+const Login: React.FC<LoginPropsType> = ({ login, isAuth, isCaptcha }) => {
 
     if (isAuth)
         return <Navigate to='/profile' />
@@ -26,10 +33,21 @@ const Login = ({ login, isAuth, isCaptcha, ...props }) => {
     );
 };
 
-const LoginForm = ({ login, isCaptcha, ...props }) => {
+type LoginFormType = {
+    login: LoginThunkType
+    isCaptcha: boolean
+}
 
-    const onSubmit = async (formData) => {
-        return await login(formData.email, formData.password, formData.rememberMe, formData.captcha)
+const LoginForm = ({ login, isCaptcha }: LoginFormType) => {
+
+    type FormDataType = {
+        email: string
+        password: string
+        rememberMe: boolean
+        captcha: boolean | undefined
+    }
+    const onSubmit = (formData: FormDataType) => {
+        return login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
     return (
@@ -85,7 +103,7 @@ const LoginForm = ({ login, isCaptcha, ...props }) => {
     );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
     isAuth: state.auth.isAuth,
     isCaptcha: state.auth.isCaptcha,
 })

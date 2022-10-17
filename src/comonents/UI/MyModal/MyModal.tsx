@@ -1,11 +1,17 @@
 import React from 'react';
 import styles from './MyModal.module.css'
 import MyButton from '../MyButton/MyButton'
-import ReactDOM from 'react-dom'
 
-const MyModal = ({ show, onClose, children, title }) => {
+type PropsType = {
+    show: boolean
+    onClose: () => void
+    children?: any
+    title: string
+}
 
-    return ReactDOM.createPortal(
+const MyModal: React.FC<PropsType> = ({ show, onClose, children, title }) => {
+
+    return (
         <div className={styles.modal + ` ${show ? styles.show : ''}`} onClick={onClose} >
             <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.modalHeader}>
@@ -18,8 +24,7 @@ const MyModal = ({ show, onClose, children, title }) => {
                     <MyButton onClick={onClose}>Close</MyButton>
                 </div>
             </div>
-        </div>,
-        document.getElementById('root')
+        </div>
     );
 };
 

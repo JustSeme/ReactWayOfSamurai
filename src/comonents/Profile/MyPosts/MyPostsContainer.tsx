@@ -1,7 +1,7 @@
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux'
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
     postsData: state.profilePage.postsData
 })
 

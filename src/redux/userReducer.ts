@@ -92,7 +92,7 @@ type SetCurrentPageActionType = {
     type: typeof SET_CURRENT_PAGE
     page: number
 }
-export const setCurrentPage = (page: number): SetCurrentPageActionType => ({ type: SET_CURRENT_PAGE, page })
+export const setCurrentPageActionCreator = (page: number): SetCurrentPageActionType => ({ type: SET_CURRENT_PAGE, page })
 type SetTotalUsersCountActionType = {
     type: typeof SET_TOTAL_USERS_COUNT
     totalCount: number
@@ -109,7 +109,7 @@ type ToggleFollowingActionType = {
 }
 export const toggleFollowing = (isFetching: boolean, userId: number): ToggleFollowingActionType => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
 
-export const getUsers = (currentPage: number, pageSize: number) => async (dispatch: any) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: any):Promise<void> => {
     dispatch(toggleFetching())
     let data = await usersAPI.getUsers(currentPage, pageSize)
     dispatch(toggleFetching())
@@ -117,11 +117,11 @@ export const getUsers = (currentPage: number, pageSize: number) => async (dispat
     dispatch(setTotalUsersCount(data.totalCount))
 }
 
-export const follow = (userId: number) => async (dispatch: any) => {
+export const followThunkCreator = (userId: number) => async (dispatch: any) => {
     followUnfollowFlow(dispatch, usersAPI.followRequest.bind(usersAPI), acceptFollow, userId)
 }
 
-export const unFollow = (userId: number) => async (dispatch: any) => {
+export const unFollowThunkCreator = (userId: number) => async (dispatch: any) => {
     followUnfollowFlow(dispatch, usersAPI.unfollowRequest.bind(usersAPI), acceptUnfollow, userId)
 }
 

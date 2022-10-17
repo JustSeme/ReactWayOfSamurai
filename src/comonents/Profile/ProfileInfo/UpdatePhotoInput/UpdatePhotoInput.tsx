@@ -1,15 +1,20 @@
 import React from 'react';
 import styles from '../ProfileInfo.module.css'
 
-const UpdatePhotoInput = ({ savePhoto, ...props }) => {
+type PropsType = {
+    savePhoto: (flie: string) => void
+}
 
-    const onPhotoChanged = (e) => {
+const UpdatePhotoInput: React.FC<PropsType> = ({ savePhoto, ...props }) => {
+
+    const onPhotoChanged = (e: any) => {
         if (e.target.files.length) {
             savePhoto(e.target.files[0])
         }
     }
     const onLabelClick = () => {
-        document.getElementById('filePhoto').click()
+        const inputFileNode = document.getElementById('filePhoto')
+        inputFileNode && inputFileNode.click()
     }
 
     return (

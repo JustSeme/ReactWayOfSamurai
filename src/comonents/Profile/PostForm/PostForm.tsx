@@ -6,9 +6,17 @@ import { Form, Field } from 'react-final-form'
 import { maxLengthCreator } from '../../../utils/validators';
 import MyTextarea from '../../UI/MyTextarea/MyTextarea';
 
-const PostForm = ({ onCreatePost, profilePage, ...props }) => {
+type PropsType = { 
+    onCreatePost: (newPostText: string, newPostTitleText: string) => void
+}
 
-    const onSubmit = (formData) => {
+const PostForm: React.FC<PropsType> = ({ onCreatePost, ...props }) => {
+
+    type FormDataType = {
+        newPostTitleText: string
+        newPostText: string
+    }
+    const onSubmit = (formData: FormDataType) => {
         onCreatePost(formData.newPostText, formData.newPostTitleText)
         formData.newPostText = ''
         formData.newPostTitleText = ''

@@ -2,7 +2,7 @@ export type PostType = {
     id: number
     title: string
     body: string
-    avatr?: string
+    avatar?: string
 }
 export type ContactsType = {
     github: string
@@ -34,3 +34,17 @@ export type UserType = {
     photos: PhotosType
     followed: boolean
 }
+export type DialogType = {
+    name: string,
+    id: number,
+}
+export type MessageType = {
+    messageText: string,
+    id: number,
+}
+export type LoginThunkType = (
+    email: string,
+    password: string,
+    rememberMe?: boolean,
+    captcha?: boolean,
+) => void

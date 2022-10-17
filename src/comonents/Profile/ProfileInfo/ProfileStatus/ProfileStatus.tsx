@@ -1,9 +1,13 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import MyInput from '../../../UI/MyInput/MyInput';
 import styles from '../ProfileInfo.module.css'
 
-const ProfileStatusWithHooks = ({ status, updateStatus, ...props }) => {
+type PropsType = {
+    status: string
+    updateStatus: (statusText: string) => void
+}
+
+const ProfileStatus: React.FC<PropsType> = ({ status, updateStatus }) => {
     const [editMode, setEditMode] = useState(false)
     const [statusText, setStatusText] = useState(status)
 
@@ -27,11 +31,16 @@ const ProfileStatusWithHooks = ({ status, updateStatus, ...props }) => {
                         <span onClick={activateEditMode}><b>Status: </b>{status || 'Введите статус... '}</span>
                     </div>
                     : <div>
-                        <MyInput value={statusText} onChange={e => setStatusText(e.target.value)} autoFocus={true} onBlur={deActivateEditMode} placeholder='Введите статус...' />
+                        <MyInput
+                            value={statusText}
+                            onChange={(e: any) => setStatusText(e.target.value)}
+                            autoFocus={true}
+                            onBlur={deActivateEditMode}
+                            placeholder='Введите статус...' />
                     </div>
             }
         </div>
     );
 };
 
-export default ProfileStatusWithHooks;
+export default ProfileStatus;

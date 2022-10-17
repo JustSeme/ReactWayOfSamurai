@@ -1,5 +1,6 @@
 import { authAPI } from "../api/api"
 import { FORM_ERROR } from "final-form"
+import { LoginThunkType } from "../types/types"
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 const TOGGLE_IS_AUTH = 'auth/TOGGLE_IS_AUTH'
@@ -76,7 +77,7 @@ export const auth = () => async (dispatch: any) => {
     }
 }
 
-export const login = (email: string, password: string, rememberMe = false, captcha = false) => (dispatch: any) => {
+export const login: LoginThunkType = (email, password, rememberMe = false, captcha = false) => (dispatch: any) => {
     return new Promise(async (reject) => {
         let data = await authAPI.login(email, password, rememberMe, captcha)
 

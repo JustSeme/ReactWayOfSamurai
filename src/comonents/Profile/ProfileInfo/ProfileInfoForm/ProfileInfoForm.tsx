@@ -5,10 +5,18 @@ import MyButton from '../../../UI/MyButton/MyButton';
 import MyTextarea from '../../../UI/MyTextarea/MyTextarea'
 import styles from './ProfileInfoForm.module.css'
 import { maxLengthCreator } from '../../../../utils/validators'
+import { ProfileType } from '../../../../types/types';
 
-const ProfileInfoForm = ({ profile, updateProfileInfo, onClose }) => {
+type PropsType = {
+    profile: ProfileType
+    updateProfileInfo: (newProfileInfo: ProfileType) => void
+    onClose: () => void
 
-    const onSubmit = (formData) => {
+}
+
+const ProfileInfoForm: React.FC<PropsType> = ({ profile, updateProfileInfo, onClose }) => {
+
+    const onSubmit = (formData: ProfileType) => {
         formData.userId = profile.userId
 
         updateProfileInfo(formData)

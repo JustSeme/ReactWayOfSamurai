@@ -1,7 +1,14 @@
 import React from 'react';
 import styles from './MyPaginator.module.css'
 
-const MyPaginator = ({ currentPage, onPageChanged, totalUsersCount, pageSize, ...props }) => {
+type PropsType = {
+    currentPage: number
+    onPageChanged: (page: number) => void
+    totalUsersCount: number
+    pageSize: number
+}
+
+const MyPaginator: React.FC<PropsType> = ({ currentPage, onPageChanged, totalUsersCount, pageSize }) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
 

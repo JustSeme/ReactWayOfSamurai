@@ -3,7 +3,13 @@ import logo from '../../img/logo.svg'
 import { NavLink } from 'react-router-dom';
 import MyButton from '../UI/MyButton/MyButton';
 
-function Header({ isAuth, login, logout, ...props }) {
+type PropsType = {
+    isAuth: boolean
+    login: string | null
+    logout: () => void
+}
+
+const Header: React.FC<PropsType> = ({ isAuth, login, logout }) => {
     return (
         <header className={style.header}>
             <img src={logo} alt='logo'></img>

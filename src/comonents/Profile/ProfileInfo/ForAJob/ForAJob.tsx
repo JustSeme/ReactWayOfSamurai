@@ -3,11 +3,16 @@ import lookingForAJobIcon from '../../../../img/icons/lookingForAJob.jpg'
 import notLookingForAJobIcon from '../../../../img/icons/notLookingForAJob.png'
 import style from '../ProfileInfo.module.css'
 
-const ForAJob = ({ lookingForAJob, lookingForAJobDescription }) => {
+type PropsType = {
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+}
+
+const ForAJob: React.FC<PropsType> = ({ lookingForAJob, lookingForAJobDescription }) => {
     return (
         <div>
             <p style={{ fontWeight: 'bold' }}>For a job:</p>
-            <img src={lookingForAJob ? lookingForAJobIcon : notLookingForAJobIcon} />
+            <img alt='lookingForAJob' src={lookingForAJob ? lookingForAJobIcon : notLookingForAJobIcon} />
             <div className={style.lookingForAJobDescription}>
                 <b>My professional skills: </b>
                 <div>

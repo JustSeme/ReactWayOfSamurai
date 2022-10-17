@@ -2,7 +2,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 import style from './DialogItem.module.css'
 
-const DialogItem = ({ children, id, ...props }) => {
+type PropsType = {
+    children: string
+    id: number
+}
+
+const DialogItem: React.FC<PropsType> = ({ children, id }) => {
     const path = `/dialogs/${id}`
 
     return (
