@@ -3,7 +3,7 @@ import MyPaginator from '../UI/MyPaginator/MyPaginator';
 import User from './User';
 import {UserType} from '../../types/types'
 import { useSelector } from 'react-redux';
-import { AppStateType } from '../../redux/redux-store';
+import { AppStateType, useTypedDispatch } from '../../redux/redux-store';
 import { useDispatch } from 'react-redux';
 import { followThunkCreator, getUsersThunkCreator, setCurrentPageActionCreator, unFollowThunkCreator } from '../../redux/userReducer';
 
@@ -14,7 +14,7 @@ const Users: React.FC = () => {
     const usersData: Array<UserType> = useSelector((state: AppStateType) => state.usersPage.usersData)
     const followingInProgress: Array<number> = useSelector((state: AppStateType) => state.usersPage.followingInProgress)
 
-    const dispatch = useDispatch()
+    const dispatch = useTypedDispatch()
     const setCurrentPage = (page: number) => dispatch(setCurrentPageActionCreator(page))
     const getUsers = (currentPage: number, pageSize: number) => dispatch(getUsersThunkCreator(currentPage, pageSize))
     const follow = (userId: number) => followThunkCreator(userId)

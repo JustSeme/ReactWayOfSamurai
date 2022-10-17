@@ -109,7 +109,7 @@ type ToggleFollowingActionType = {
 }
 export const toggleFollowing = (isFetching: boolean, userId: number): ToggleFollowingActionType => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: any):Promise<void> => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: any) => {
     dispatch(toggleFetching())
     let data = await usersAPI.getUsers(currentPage, pageSize)
     dispatch(toggleFetching())
