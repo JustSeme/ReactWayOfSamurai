@@ -1,6 +1,8 @@
 import { authAPI } from "../api/api"
 import { FORM_ERROR } from "final-form"
 import { LoginThunkType } from "../types/types"
+import { ThunkAction } from "redux-thunk"
+import { AppStateType } from "./redux-store"
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 const TOGGLE_IS_AUTH = 'auth/TOGGLE_IS_AUTH'
@@ -16,7 +18,7 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-const authReducer = (state = initialState, action: any): InitialStateType => {
+const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
@@ -45,13 +47,15 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
     }
 }
 
+type ActionsType = setAuthUserDataActionType | ToggleIsAuthActionType | ToggleIsCaptchaActionType
+
 type setAuthUserDataActionType = {
     type: typeof SET_USER_DATA,
     userData: {
         userId: number | null,
         email: string | null,
         login: string | null,
-        isAuth: boolean | null,
+        isAuth: boolean,
     }
 }
 
@@ -68,6 +72,8 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
 export const toggleIsAuth = (): ToggleIsAuthActionType => ({ type: TOGGLE_IS_AUTH })
 export const toggleIsCaptcha = (bool: boolean): ToggleIsCaptchaActionType => ({ type: TOGGLE_IS_CAPTCHA, bool })
 
+type ThunkType = ThunkAction<Promise<any>, AppStateType, unknown, ActionsType>
+
 export const auth = () => async (dispatch: any) => {
     let data = await authAPI.authMe()
     if (data.resultCode === 0) {
@@ -77,7 +83,7 @@ export const auth = () => async (dispatch: any) => {
     }
 }
 
-export const login: LoginThunkType = (email, password, rememberMe = false, captcha = false) => (dispatch: any) => {
+export const login: LoginThunkType = (email, password, rememberMe = false, captcha = false): ThunkType => (dispatch) => {
     return new Promise(async (reject) => {
         let data = await authAPI.login(email, password, rememberMe, captcha)
 
@@ -103,7 +109,7 @@ export const login: LoginThunkType = (email, password, rememberMe = false, captc
     })
 }
 
-export const logoutActionCreator = () => async (dispatch: any) => {
+export const logoutActionCreator = (): ThunkType => async (dispatch) => {
     let data = await authAPI.logout()
     if (data.resultCode === 0) {
         dispatch(toggleIsAuth())
