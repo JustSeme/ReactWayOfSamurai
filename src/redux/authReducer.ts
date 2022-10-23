@@ -103,7 +103,7 @@ export const login: LoginThunkType = (email, password, rememberMe = false, captc
     })
 }
 
-export const logout = () => async (dispatch: any) => {
+export const logoutActionCreator = () => async (dispatch: any) => {
     let data = await authAPI.logout()
     if (data.resultCode === 0) {
         dispatch(toggleIsAuth())

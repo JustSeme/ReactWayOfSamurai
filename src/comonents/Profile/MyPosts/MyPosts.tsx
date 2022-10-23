@@ -1,19 +1,18 @@
 import React from "react";
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
-import PostFormContainer from "../PostForm/PostFormContainer";
-import { PostType } from "../../../types/types";
+import PostForm from "../PostForm/PostForm";
+import { useSelector } from "react-redux";
+import { AppStateType } from "../../../redux/redux-store";
 
-type PropsType = { 
-    postsData: Array<PostType>
-}
+const MyPosts: React.FC = (props) => {
+    const postsData = useSelector((state: AppStateType) => state.profilePage.postsData)
 
-const MyPosts: React.FC<PropsType> = ({ postsData }) => {
     const postsElements = postsData ? [...postsData].map((post) => <Post post={post} key={post.id} />) : ''
 
     return (
         <div>
-            <PostFormContainer />
+            <PostForm />
             <h2>My Posts</h2>
             <div className={style.posts}>
                 {postsElements}

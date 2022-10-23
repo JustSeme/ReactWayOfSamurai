@@ -1,10 +1,18 @@
-import React from 'react';
 import MyButton from '../UI/MyButton/MyButton';
 import noAvatar from '../../img/noAvatar.jpg'
 import styles from './Users.module.css'
 import { NavLink } from 'react-router-dom'
+import { UserType } from '../../types/types';
 
-const User = ({ user, followingInProgress, follow, unFollow, ...props }) => {
+type PropsType = {
+    user: UserType
+    followingInProgress: Array<number>,
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
+
+}
+
+const User: React.FC<PropsType> = ({ user, followingInProgress, follow, unFollow, ...props }) => {
     return (
         <div className={styles.user}>
             <span className={styles.avatar}>

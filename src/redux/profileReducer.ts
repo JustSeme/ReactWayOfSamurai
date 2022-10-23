@@ -111,31 +111,31 @@ const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType => ({ 
 }
 const updateProfileInfoSuccess = (newProfileInfo: ProfileType): UpdateProfileInfoSuccessActionType => ({ type: UPDATE_PROFILE_INFO_SUCCESS, newProfileInfo }) */
 
-export const getProfile = (userId: number) => async (dispatch: any) => {
+export const getProfileThunkCreator = (userId: number) => async (dispatch: any) => {
     let data = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(data))
 }
 
-export const getUserStatus = (userId: number) => async (dispatch: any) => {
+export const getUserStatusThunkCreator = (userId: number) => async (dispatch: any) => {
     let data = await profileAPI.getUserStatus(userId)
     dispatch(setUserStatus(data))
 }
 
-export const updateStatus = (status: string) => async (dispatch: any) => {
+export const updateStatusThunkCreator = (status: string) => async (dispatch: any) => {
     let data = await profileAPI.updateStatus(status)
     if (data.resultCode === 0) {
         dispatch(setUserStatus(status))
     }
 }
 
-export const savePhoto = (file: any) => async (dispatch: any) => {
+export const savePhotoThunkCreator = (file: any) => async (dispatch: any) => {
     let data = await profileAPI.savePhoto(file)
     if (data.resultCode === 0) {
         dispatch(savePhotoSuccess(data.data.photos))
     }
 }
 
-export const updateProfileInfo = (newProfileInfo: ProfileType) => async (dispatch: any) => {
+export const updateProfileInfoThunkCreator = (newProfileInfo: ProfileType) => async (dispatch: any) => {
     let data = await profileAPI.updateProfileInfo(newProfileInfo)
     if (data.resultCode === 0) {
         dispatch(setUserProfile(newProfileInfo))

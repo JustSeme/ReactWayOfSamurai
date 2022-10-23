@@ -2,14 +2,17 @@ import style from './Header.module.css'
 import logo from '../../img/logo.svg'
 import { NavLink } from 'react-router-dom';
 import MyButton from '../UI/MyButton/MyButton';
+import { useSelector } from 'react-redux';
+import { AppStateType, useTypedDispatch } from '../../redux/redux-store';
+import { logoutActionCreator } from '../../redux/authReducer';
 
-type PropsType = {
-    isAuth: boolean
-    login: string | null
-    logout: () => void
-}
+const Header: React.FC = (props) => {
+    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
+    const login = useSelector((state: AppStateType) => state.auth.login)
 
-const Header: React.FC<PropsType> = ({ isAuth, login, logout }) => {
+    const dispatch = useTypedDispatch()
+    const logout = () => dispatch(logoutActionCreator())
+
     return (
         <header className={style.header}>
             <img src={logo} alt='logo'></img>

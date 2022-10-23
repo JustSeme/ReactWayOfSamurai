@@ -5,12 +5,12 @@ import style from './PostForm.module.css';
 import { Form, Field } from 'react-final-form'
 import { maxLengthCreator } from '../../../utils/validators';
 import MyTextarea from '../../UI/MyTextarea/MyTextarea';
+import { useTypedDispatch } from '../../../redux/redux-store';
+import { newPostActionCreator } from '../../../redux/profileReducer';
 
-type PropsType = { 
-    onCreatePost: (newPostText: string, newPostTitleText: string) => void
-}
-
-const PostForm: React.FC<PropsType> = ({ onCreatePost, ...props }) => {
+const PostForm: React.FC = (props) => {
+    const dispatch = useTypedDispatch()
+    const onCreatePost = (newPostText: string, newPostTitleText: string) => dispatch(newPostActionCreator(newPostText, newPostTitleText))
 
     type FormDataType = {
         newPostTitleText: string

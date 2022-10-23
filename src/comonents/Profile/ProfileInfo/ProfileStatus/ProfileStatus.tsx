@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import MyInput from '../../../UI/MyInput/MyInput';
 import styles from '../ProfileInfo.module.css'
 
@@ -33,7 +33,7 @@ const ProfileStatus: React.FC<PropsType> = ({ status, updateStatus }) => {
                     : <div>
                         <MyInput
                             value={statusText}
-                            onChange={(e: any) => setStatusText(e.target.value)}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setStatusText(e.target.value)}
                             autoFocus={true}
                             onBlur={deActivateEditMode}
                             placeholder='Введите статус...' />

@@ -8,11 +8,20 @@ import ForAJob from './ForAJob/ForAJob';
 import Contacts from './Contacts/Contacts';
 import MyModal from '../../UI/MyModal/MyModal'
 import ProfileInfoForm from './ProfileInfoForm/ProfileInfoForm';
-import { PropsProfileType } from '../Profile';
+import { ProfileType } from '../../../types/types';
 
-const ProfileInfo: React.FC<PropsProfileType> = ({ profile, status, updateStatus, isOwner, savePhoto, updateProfileInfo }) => {
+type PropsProfileInfoType = {
+    profile: ProfileType | null
+    status: string
+    isOwner: boolean
+
+    savePhoto: (flie: string) => void
+    updateStatus: (statusText: string) => void
+    updateProfileInfo: (newProfileInfo: ProfileType) => void
+}
+
+const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateStatus, isOwner, savePhoto, updateProfileInfo }) => {
     const [show, setShow] = useState(false)
-    
 
     if (!profile) {
         return <MyPreloader />
