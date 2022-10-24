@@ -1,4 +1,4 @@
-import { authAPI } from "../api/api"
+import { authAPI, ResultCodeEnum, ResultCodeForCaptcha } from "../api/api"
 import { FORM_ERROR } from "final-form"
 import { LoginThunkType } from "../types/types"
 import { ThunkAction } from "redux-thunk"
@@ -75,8 +75,8 @@ export const toggleIsCaptcha = (bool: boolean): ToggleIsCaptchaActionType => ({ 
 type ThunkType = ThunkAction<Promise<any>, AppStateType, unknown, ActionsType>
 
 export const auth = () => async (dispatch: any) => {
-    let data = await authAPI.authMe()
-    if (data.resultCode === 0) {
+    let data = await (await authAPI.authMe())
+    if (data.resultCode === ResultCodeEnum.Success) {
         const { id, login, email } = data.data
         dispatch(setAuthUserData(id, email, login, true))
         dispatch(toggleIsAuth())
@@ -87,9 +87,9 @@ export const login: LoginThunkType = (email, password, rememberMe = false, captc
     return new Promise(async (reject) => {
         let data = await authAPI.login(email, password, rememberMe, captcha)
 
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodeEnum.Success) {
             dispatch(auth())
-        } else if (data.resultCode === 10) {
+        } else if (data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
             authAPI.getCaptcha().then(captchaData => {
                 dispatch(toggleIsCaptcha(true))
                 let captchaDOM = document.getElementById('captcha')
@@ -111,7 +111,7 @@ export const login: LoginThunkType = (email, password, rememberMe = false, captc
 
 export const logoutActionCreator = (): ThunkType => async (dispatch) => {
     let data = await authAPI.logout()
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(toggleIsAuth())
         dispatch(setAuthUserData(null, null, null, false))
     }
