@@ -1,5 +1,6 @@
 .profileAvatar {
     border-radius: 20px;
+    width: 100%;
 }
 
 .profileWrapper {
@@ -47,7 +48,7 @@
 .inputWrapper {
     width: 100%;
     position: relative;
-    margin: 15px 0;
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -58,6 +59,7 @@
 }
 
 .labelBtn {
+    margin-top: 15px;
     cursor: pointer;
     font-size: 15px;
     letter-spacing: 1px;

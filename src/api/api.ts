@@ -54,7 +54,7 @@ type SavePhotoResponseType = {
     messages: Array<string>
 }
 
-type UpdateProfileInfoType = {
+type UpdateProfileInfoResponseType = {
     data: {}
     resultCode: ResultCodeEnum
     messages: Array<string>
@@ -80,7 +80,10 @@ export const profileAPI = {
         }).then(response => response.data)
     },
     updateProfileInfo(newProfileInfo: ProfileType) {
-        return instance.put<UpdateProfileInfoType>(`profile`, { ...newProfileInfo }).then(response => response.data)
+        return instance.put<UpdateProfileInfoResponseType>(`profile`, { ...newProfileInfo }).then(response => response.data)
+    },
+    getIsFollow(userId: number) {
+        return instance.get<boolean>(`follow/${userId}`).then(response => response.data)
     }
 }
 

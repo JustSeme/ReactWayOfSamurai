@@ -20,7 +20,6 @@ const initialState = {
     currentPage: 1,
     isFetching: false,
     followingInProgress: [] as Array<number>, // array of userIds
-    fake: 10,
 }
 
 export type InitialStateType = typeof initialState
@@ -141,7 +140,7 @@ export const unFollowThunkCreator = (userId: number): ThunkType => async (dispat
 }
 
 async function _followUnfollowFlow(dispatch: DispatchType, apiMethod: any,
-    actionCreator: ((userId: number) => AcceptFollowActionType |AcceptUnfollowActionType), userId: number) {
+    actionCreator: ((userId: number) => AcceptFollowActionType | AcceptUnfollowActionType), userId: number) {
     dispatch(toggleFollowing(true, userId))
     let data = await apiMethod(userId)
     if (data.resultCode === 0) {

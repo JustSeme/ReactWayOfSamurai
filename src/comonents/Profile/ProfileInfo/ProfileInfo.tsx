@@ -9,6 +9,10 @@ import Contacts from './Contacts/Contacts';
 import MyModal from '../../UI/MyModal/MyModal'
 import ProfileInfoForm from './ProfileInfoForm/ProfileInfoForm';
 import { ProfileType } from '../../../types/types';
+import { AppStateType, useTypedDispatch } from '../../../redux/redux-store';
+import { getIsFollowThunkCreator } from '../../../redux/profileReducer';
+import { followThunkCreator, unFollowThunkCreator } from '../../../redux/userReducer';
+import { useSelector } from 'react-redux';
 
 type PropsProfileInfoType = {
     profile: ProfileType | null
@@ -22,9 +26,29 @@ type PropsProfileInfoType = {
 
 const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateStatus, isOwner, savePhoto, updateProfileInfo }) => {
     const [show, setShow] = useState(false)
+    const dispatch = useTypedDispatch()
+    
+    const isFollow = useSelector((state: AppStateType) => state.profilePage.isFollow)
+    const followingInProgress = useSelector((state: AppStateType) => state.usersPage.followingInProgress)
+    /* функции follow и unFollow находятся в userReducer, в то время как значение  isFollow - в profileReducer. Массив followingInProgress добавлен чтобы делать ререндер */
 
     if (!profile) {
         return <MyPreloader />
+    }
+
+    const getIsFollow = (userId: number) => dispatch(getIsFollowThunkCreator(userId))
+    const follow = (userId: number) => dispatch(followThunkCreator(userId))
+    const unFollow = (userId: number) => dispatch(unFollowThunkCreator(userId))
+
+    if(!isOwner) {
+        getIsFollow(profile.userId)
+    }
+
+    let subscribeBtn
+    if(isFollow) {
+        subscribeBtn = <button className={styles.labelBtn} onClick={() => unFollow(profile.userId)}>Отписаться</button>
+    } else {
+        subscribeBtn = <button className={styles.labelBtn} onClick={() => follow(profile.userId)}>Подписаться</button>
     }
 
     return (
@@ -32,6 +56,8 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateSt
             <div>
                 <img alt='profile avatar' className={styles.profileAvatar} src={profile.photos.large || noAvatar} />
                 <div className={styles.profileButtonsWrapper}>
+                    {/* {!isOwner && <button className={styles.labelBtn}>{isFollow ? 'Отписаться' : 'Подписаться'}</button>} */}
+                    {!isOwner && subscribeBtn}
                     {isOwner && <UpdatePhotoInput savePhoto={savePhoto} />}
                     {isOwner && <button onClick={() => setShow(true)} className={styles.labelBtn}>Редактировать профиль</button>}
                 </div>

@@ -11,8 +11,7 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
 const SET_STATUS = 'profile/SET_STATUS'
 const DELETE_POST = 'profile/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
-
-
+const TOGGLE_IS_FOLLOW = 'profile/TOGGLE_IS_FOLLOW'
 
 const initialState = {
     postsData: [
@@ -21,6 +20,7 @@ const initialState = {
     ] as Array<PostType>,
     profile: null as ProfileType | null,
     status: '',
+    isFollow: false,
 }
 
 type InitialStateType = typeof initialState
@@ -66,6 +66,13 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
                 ...state,
                 profile: { ...state.profile, photos: action.photos } as ProfileType
             }
+        case TOGGLE_IS_FOLLOW:
+            console.log('изменения происходят');
+            
+            return {
+                ...state,
+                isFollow: action.isFollow
+            }
         default:
             break;
     }
@@ -73,7 +80,7 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
     return state
 }
 
-type ActionsType = NewPostActionType | DeletePostActionType | SetUserProfileActionType | SetUserStatusActionType | SavePhotoSuccessActionType
+type ActionsType = NewPostActionType | DeletePostActionType | SetUserProfileActionType | SetUserStatusActionType | SavePhotoSuccessActionType | ToggleIsFollowActionType
 
 export default profileReducer
 
@@ -108,6 +115,12 @@ type SavePhotoSuccessActionType = {
 }
 const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType => ({ type: SAVE_PHOTO_SUCCESS, photos })
 
+type ToggleIsFollowActionType = {
+    type: typeof TOGGLE_IS_FOLLOW
+    isFollow: boolean
+}
+const toggleIsFollow = (isFollow: boolean): ToggleIsFollowActionType => ({ type: TOGGLE_IS_FOLLOW, isFollow })
+
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 
 export const getProfileThunkCreator = (userId: number):ThunkType => async (dispatch) => {
@@ -141,4 +154,9 @@ export const updateProfileInfoThunkCreator = (newProfileInfo: ProfileType): Thun
     } else if (data.resultCode === 1) {
         alert(data.messages[0])
     }
+}
+
+export const getIsFollowThunkCreator = (userId: number): ThunkType => async (dispatch) => {
+    let data = await profileAPI.getIsFollow(userId)
+    dispatch(toggleIsFollow(data))
 }
