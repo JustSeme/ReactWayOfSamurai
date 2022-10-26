@@ -1,0 +1,93 @@
+.wrapper {
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.signIn {
+    height: 90px;
+    width: 300px;
+    border-radius: 8px;
+    position: relative;
+    color: rgb(79, 85, 97);
+    font-weight: 700;
+    font-size: 16px;
+}
+.signIn::before {
+    display: block;
+    position: relative;
+    height: 2px;
+	background: var(--secondary-color);
+	content: '';
+    top: 44px;
+    margin-left: 20px;
+    z-index: 1;
+}
+
+.signIn input:first-of-type {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.signIn input:nth-child(2){
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+.signIn input[type="text"], .signIn input[type="password"], .signIn button, .signIn a[type="button"] {
+    background: var(--main-bg-color);
+    box-shadow: inset -100px -100px 0 var(--main-bg-color);
+    color: rgb(225, 225, 225);
+}
+.signIn input[type="text"], .signIn input[type="password"] {
+    position: relative;
+    display: block;
+    width: 280px;
+    height: 45px;
+    border: 0;
+    outline: 0;
+    top: -2px;
+    padding: 0 0 0 20px;
+    font-weight: 700;
+}
+.signIn input:focus {
+    color:gold
+}
+
+.signIn button[type="submit"] {
+    display: block;
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    color: var(--secondary-color);
+    border-radius: 50px;
+    outline: 0;
+    z-index: 2;
+    top: 19px;
+    right: -24px;
+    border: 6px solid var(--secondary-color);
+    font-size: 25px;
+    text-indent: 0px;
+    padding-left: 9px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+.signIn button[type="submit"]:hover {
+    color: var(--light-blue-color);
+    text-shadow: 0 0 10px var(--light-blue-color);
+    cursor: pointer;
+}
+
+.signIn p {
+    color: rgb(79, 85, 97);
+    font-weight: 700;
+    font-size: 14px;
+    margin: 5px 0 0 0;
+}
+.signIn p > a {
+    font-size: 14px;
+    color: rgb(111, 119, 135);
+    text-decoration: none;
+}
+.signIn p > a:hover {
+    border-bottom: 1px solid;
+}
