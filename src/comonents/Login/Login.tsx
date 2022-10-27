@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Login.module.css'
 import errorStyle from '../UI/MyInput/MyInput.module.css'
 import { required } from '../../utils/validators'
@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { login } from '../../redux/authReducer';
 import { Navigate } from 'react-router-dom';
 import { LoginThunkType } from '../../types/types';
+import InfoBlock from './InfoBlock/InfoBlock';
+import infoCircle from '../../img/icons/infoCircle.svg'
 
 type LoginPropsType = {
     login: LoginThunkType
@@ -38,6 +40,7 @@ type LoginFormType = {
 }
 
 const LoginForm = ({ login, isCaptcha }: LoginFormType) => {
+    const [isShowInfo, setShowInfo] = useState(false)
 
     type FormDataType = {
         email: string
@@ -93,6 +96,8 @@ const LoginForm = ({ login, isCaptcha }: LoginFormType) => {
                         <button type='submit'>▶</button>
                     </div>
                     <p>Don't you have an account? <a href="https://social-network.samuraijs.com/signUp">зарегистрироваться</a></p>
+                    <InfoBlock visible={isShowInfo} />
+                    <img src={infoCircle} alt="info" onMouseOver={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)} />
                 </form>
             )}
         >

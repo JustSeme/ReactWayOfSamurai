@@ -1,5 +1,5 @@
 import veronika from '../img/avatar.png'
-import { profileAPI } from '../api/api'
+import { profileAPI, ResultCodeEnum } from '../api/api'
 import { PostType } from '../types/types'
 import { ProfileType } from '../types/types'
 import { PhotosType } from '../types/types'
@@ -135,23 +135,23 @@ export const getUserStatusThunkCreator = (userId: number):ThunkType => async (di
 
 export const updateStatusThunkCreator = (status: string): ThunkType => async (dispatch) => {
     let data = await profileAPI.updateStatus(status)
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(setUserStatus(status))
     }
 }
 
 export const savePhotoThunkCreator = (file: string): ThunkType => async (dispatch) => {
     let data = await profileAPI.savePhoto(file)
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(savePhotoSuccess(data.data))
     }
 }
 
 export const updateProfileInfoThunkCreator = (newProfileInfo: ProfileType): ThunkType => async (dispatch) => {
     let data = await profileAPI.updateProfileInfo(newProfileInfo)
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(setUserProfile(newProfileInfo))
-    } else if (data.resultCode === 1) {
+    } else if (data.resultCode === ResultCodeEnum.Error) {
         alert(data.messages[0])
     }
 }

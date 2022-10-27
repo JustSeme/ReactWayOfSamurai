@@ -32,7 +32,7 @@ export const initializedSuccess = (): InitializedSuccessActionType => ({ type: I
 
 type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsType>
 
-export const initializeApp = (): ThunkType => (dispatch) => {
+export const initializeAppThunkCreator = (): ThunkType => (dispatch) => {
     const promise = dispatch(auth())
 
     Promise.all([promise])

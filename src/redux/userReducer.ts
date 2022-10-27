@@ -1,4 +1,4 @@
-import { usersAPI } from "../api/api"
+import { ResultCodeEnum, usersAPI } from "../api/api"
 import { updateObjectInArray } from "../utils/objectHelpers"
 import { UserType } from "../types/types"
 import { ThunkAction } from "redux-thunk"
@@ -143,7 +143,7 @@ async function _followUnfollowFlow(dispatch: DispatchType, apiMethod: any,
     actionCreator: ((userId: number) => AcceptFollowActionType | AcceptUnfollowActionType), userId: number) {
     dispatch(toggleFollowing(true, userId))
     let data = await apiMethod(userId)
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(actionCreator(userId))
     }
     dispatch(toggleFollowing(false, userId))
