@@ -1,5 +1,6 @@
 import style from './Navbar.module.css'
 import { NavLink } from 'react-router-dom'
+import FriendsList from './FriendsList/FriendsList';
 
 function Navbar() {
     return (
@@ -13,6 +14,7 @@ function Navbar() {
             <div className={style.item}>
                 <NavLink to='/users'>Users</NavLink>
             </div>
+            <FriendsList />
         </nav>
     )
 }

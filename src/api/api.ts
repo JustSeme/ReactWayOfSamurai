@@ -24,15 +24,17 @@ type GetUsersResponseType = {
     error: string | null
 }
 
-type FollowResponseType = {
+export type FollowResponseType = {
     data: { }
     resultCode: ResultCodeEnum
     messages: Array<string>
 }
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
+    getUsers(currentPage = 1, pageSize = 10, searchedName: string, isFriendsOnly: boolean) {
+        let extraParam = searchedName ? `&term=${searchedName}` : ''
+        extraParam += isFriendsOnly ? `&friend=${isFriendsOnly}` : ''
+        return instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}${extraParam}`).then(response => response.data)
     },
     followRequest(id: number) {
         return instance.post<FollowResponseType>(`follow/${id}`).then(response => response.data)

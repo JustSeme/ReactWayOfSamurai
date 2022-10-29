@@ -4,10 +4,11 @@ import styles from '../ProfileInfo.module.css'
 
 type PropsType = {
     status: string
+    isOwner: boolean
     updateStatus: (statusText: string) => void
 }
 
-const ProfileStatus: React.FC<PropsType> = ({ status, updateStatus }) => {
+const ProfileStatus: React.FC<PropsType> = ({ status, updateStatus, isOwner }) => {
     const [editMode, setEditMode] = useState(false)
     const [statusText, setStatusText] = useState(status)
 
@@ -22,13 +23,20 @@ const ProfileStatus: React.FC<PropsType> = ({ status, updateStatus }) => {
         setEditMode(false)
         updateStatus(statusText)
     }
+    
+    let statusSpanNode
+    if(isOwner) {
+        statusSpanNode = <span onClick={activateEditMode}><b>Status: </b>{status || 'Введите статус... '}</span>
+    } else {
+        statusSpanNode = <span><b>Status: </b>{status || 'Статус отсутствует...'}</span>
+    }
 
     return (
         <div>
             {
                 !editMode
                     ? <div className={styles.status}>
-                        <span onClick={activateEditMode}><b>Status: </b>{status || 'Введите статус... '}</span>
+                        {statusSpanNode}
                     </div>
                     : <div>
                         <MyInput

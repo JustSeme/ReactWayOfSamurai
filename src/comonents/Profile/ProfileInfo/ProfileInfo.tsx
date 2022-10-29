@@ -30,7 +30,7 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateSt
     
     const isFollow = useSelector((state: AppStateType) => state.profilePage.isFollow)
     const followingInProgress = useSelector((state: AppStateType) => state.usersPage.followingInProgress)
-    /* функции follow и unFollow находятся в userReducer, в то время как значение  isFollow - в profileReducer. Массив followingInProgress добавлен чтобы делать ререндер */
+    /* функции follow и unFollow находятся в userReducer, в то время как значение  isFollow - в profileReducer. Массив followingInProgress добавлен чтобы компонент перерендеривался */
 
     if (!profile) {
         return <MyPreloader />
@@ -51,15 +51,15 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateSt
         subscribeBtn = <button className={styles.labelBtn} onClick={() => follow(profile.userId)}>Подписаться</button>
     }
 
+
     return (
         <div className={styles.profileWrapper}>
             <div>
                 <img alt='profile avatar' className={styles.profileAvatar} src={profile.photos.large || noAvatar} />
                 <div className={styles.profileButtonsWrapper}>
-                    {/* {!isOwner && <button className={styles.labelBtn}>{isFollow ? 'Отписаться' : 'Подписаться'}</button>} */}
                     {!isOwner && subscribeBtn}
                     {isOwner && <UpdatePhotoInput savePhoto={savePhoto} />}
-                    {isOwner && <button onClick={() => setShow(true)} className={styles.labelBtn}>Редактировать профиль</button>}
+                    {isOwner && <button onClick={ () => setShow(true) } className={styles.labelBtn}>Редактировать профиль</button>}
                 </div>
                 <div>
                     <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{profile.fullName}</p>
@@ -67,7 +67,7 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateSt
                 <div>
                     <b>About Me: </b>{profile.aboutMe}
                 </div>
-                <ProfileStatus status={status} updateStatus={updateStatus} />
+                <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner} />
                 <MyModal title='Редактирование профиля' onClose={() => setShow(false)} show={show}>
                     <ProfileInfoForm onClose={() => setShow(false)} profile={profile} updateProfileInfo={updateProfileInfo} />
                 </MyModal>

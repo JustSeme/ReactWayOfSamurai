@@ -1,3 +1,10 @@
+.usersWrapper {
+    display: grid;
+    grid-template-areas:
+        'paginator' 'paginator';
+    grid-template-columns: 5fr 5fr;
+}
+
 .user {
     display: grid;
     grid-template-columns: 0.5fr 2fr;
@@ -45,4 +52,25 @@
 
 .locationInfo>* {
     margin-left: 70%;
+}
+
+.notFound {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.friendsCheckbox {
+    margin-left: 10px;
+    -ms-transform: scale(1.5); /* IE */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -o-transform: scale(1.5); /* Opera */
+    transform: scale(1.5);
+    padding: 10px;
+}
+
+.checkboxText {
+    display: inline;
+    font-size: 110%;
 }
