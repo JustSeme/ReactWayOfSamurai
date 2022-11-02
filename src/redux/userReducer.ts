@@ -137,7 +137,7 @@ const toggleSearching = (isSearching: boolean): ToggleSearchingActionType => ({ 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 type DispatchType = Dispatch<ActionsType>
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number, searchedName: string, isFriendsOnly: boolean): ThunkType => async (dispatch) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number, searchedName: string, isFriendsOnly: boolean | null): ThunkType => async (dispatch) => {
     if(!searchedName) {
         dispatch(toggleFetching())
         dispatch(toggleSearching(false))

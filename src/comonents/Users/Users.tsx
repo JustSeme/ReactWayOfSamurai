@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MyPaginator from '../UI/MyPaginator/MyPaginator';
 import User from './User';
 import { UserType } from '../../types/types'
@@ -7,14 +7,15 @@ import { AppStateType, useTypedDispatch } from '../../redux/redux-store';
 import { followThunkCreator, getUsersThunkCreator, setCurrentPageActionCreator, unFollowThunkCreator } from '../../redux/userReducer';
 import MyPreloader from '../UI/MyPreloader/MyPreloader';
 import style from './Users.module.css'
-import MyInput from '../UI/MyInput/MyInput';
+import UsersSearchForm from './UsersSearchForm';
 
 const Users: React.FC = () => {
     const [searchedName, setSearchedName] = useState('')
     const [isFriendsOnly, setIsFriendsOnly] = useState(false)
 
     useEffect(() => {
-        getUsers(currentPage, pageSize, searchedName, isFriendsOnly)
+        setCurrentPage(1)
+        getUsers(1, pageSize, searchedName, isFriendsOnly)
     }, [searchedName, isFriendsOnly])
 
     const currentPage: number = useSelector((state: AppStateType) => state.usersPage.currentPage)
@@ -41,11 +42,7 @@ const Users: React.FC = () => {
     return (
         <div style={{'textAlign': 'center'}}>
             <MyPaginator currentPage={currentPage} onPageChanged={onPageChanged} totalUsersCount={totalUsersCount} pageSize={pageSize} />
-            <div style={{'display': 'inlineBlock'}}>
-                <MyInput autoFocus onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchedName(e.target.value)} value={searchedName} placeholder='Введите имя...' />
-                <span className={style.checkboxText}>Отображать только друзей</span>
-                <input className={style.friendsCheckbox} type="checkbox" checked={isFriendsOnly} onChange={() => setIsFriendsOnly(!isFriendsOnly)} />
-            </div>
+            <UsersSearchForm searchedName={searchedName} isFriendsOnly={isFriendsOnly} setSearchedName={setSearchedName} setIsFriendsOnly={setIsFriendsOnly} />
             {!usersData.length && isSearching && <p className={style.notFound}>Нам не удалось найти пользователя с таким именем :/</p>}
             <div className={style.usersWrapper}>
                 {

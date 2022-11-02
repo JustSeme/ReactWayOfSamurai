@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './MyPaginator.module.css'
 
 type PropsType = {
@@ -10,8 +10,9 @@ type PropsType = {
 
 const MyPaginator: React.FC<PropsType> = ({ currentPage, onPageChanged, totalUsersCount, pageSize }) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
-    let pages = []
+    let pages: number[] = []
 
+    
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
@@ -20,6 +21,7 @@ const MyPaginator: React.FC<PropsType> = ({ currentPage, onPageChanged, totalUse
     let curPF = ((curP - 7) < 0) ? 0 : curP - 7;
     let curPL = curP + 7;
     let slicedPages = pages.slice(curPF, curPL);
+
     return (
         <div>
             {slicedPages.map((page) => {
