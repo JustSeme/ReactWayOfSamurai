@@ -8,15 +8,18 @@ import { followThunkCreator, getUsersThunkCreator, setCurrentPageActionCreator, 
 import MyPreloader from '../UI/MyPreloader/MyPreloader';
 import style from './Users.module.css'
 import UsersSearchForm from './UsersSearchForm';
+import useDebounce from '../../hooks/useDebounce';
 
 const Users: React.FC = () => {
     const [searchedName, setSearchedName] = useState('')
     const [isFriendsOnly, setIsFriendsOnly] = useState(false)
 
+    const debouncedSearchedName = useDebounce(searchedName, 500)
+
     useEffect(() => {
         setCurrentPage(1)
-        getUsers(1, pageSize, searchedName, isFriendsOnly)
-    }, [searchedName, isFriendsOnly])
+        getUsers(1, pageSize, debouncedSearchedName, isFriendsOnly)
+    }, [debouncedSearchedName, isFriendsOnly])
 
     const currentPage: number = useSelector((state: AppStateType) => state.usersPage.currentPage)
     const totalUsersCount: number = useSelector((state: AppStateType) => state.usersPage.totalUsersCount)
