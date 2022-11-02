@@ -1,14 +1,20 @@
 import { useState, useEffect, ChangeEvent } from 'react';
+import { useSelector } from 'react-redux';
+import { updateStatusThunkCreator } from '../../../../redux/profileReducer';
+import { AppStateType, useTypedDispatch } from '../../../../redux/redux-store';
 import MyInput from '../../../UI/MyInput/MyInput';
 import styles from '../ProfileInfo.module.css'
 
 type PropsType = {
-    status: string
     isOwner: boolean
-    updateStatus: (statusText: string) => void
 }
 
-const ProfileStatus: React.FC<PropsType> = ({ status, updateStatus, isOwner }) => {
+const ProfileStatus: React.FC<PropsType> = ({ isOwner }) => {
+    const status = useSelector((state: AppStateType) => state.profilePage.status)
+
+    const dispatch = useTypedDispatch()
+    const updateStatus = (statusText: string) => dispatch(updateStatusThunkCreator(statusText))
+
     const [editMode, setEditMode] = useState(false)
     const [statusText, setStatusText] = useState(status)
 

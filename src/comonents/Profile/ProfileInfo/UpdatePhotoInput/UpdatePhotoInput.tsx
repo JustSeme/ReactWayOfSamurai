@@ -1,11 +1,11 @@
 import React from 'react';
+import { savePhotoThunkCreator } from '../../../../redux/profileReducer';
+import { useTypedDispatch } from '../../../../redux/redux-store';
 import styles from '../ProfileInfo.module.css'
 
-type PropsType = {
-    savePhoto: (flie: string) => void
-}
-
-const UpdatePhotoInput: React.FC<PropsType> = ({ savePhoto, ...props }) => {
+const UpdatePhotoInput: React.FC = (props) => {
+    const dispatch = useTypedDispatch()
+    const savePhoto = (file: string) => dispatch(savePhotoThunkCreator(file))
 
     const onPhotoChanged = (e: any) => {
         if (e.target.files.length) {

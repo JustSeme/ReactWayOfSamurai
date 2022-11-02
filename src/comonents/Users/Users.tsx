@@ -4,7 +4,7 @@ import User from './User';
 import { UserType } from '../../types/types'
 import { useSelector } from 'react-redux';
 import { AppStateType, useTypedDispatch } from '../../redux/redux-store';
-import { followThunkCreator, getUsersThunkCreator, setCurrentPageActionCreator, unFollowThunkCreator } from '../../redux/userReducer';
+import { getUsersThunkCreator, setCurrentPageActionCreator } from '../../redux/userReducer';
 import MyPreloader from '../UI/MyPreloader/MyPreloader';
 import style from './Users.module.css'
 import UsersSearchForm from './UsersSearchForm';
@@ -25,15 +25,12 @@ const Users: React.FC = () => {
     const totalUsersCount: number = useSelector((state: AppStateType) => state.usersPage.totalUsersCount)
     const pageSize: number = useSelector((state: AppStateType) => state.usersPage.pageSize)
     const usersData: Array<UserType> = useSelector((state: AppStateType) => state.usersPage.usersData)
-    const followingInProgress: Array<number> = useSelector((state: AppStateType) => state.usersPage.followingInProgress)
     const isFetching: boolean = useSelector((state: AppStateType) => state.usersPage.isFetching)
     const isSearching: boolean = useSelector((state: AppStateType) => state.usersPage.isSearching)
 
     const dispatch = useTypedDispatch()
     const setCurrentPage = (page: number) => dispatch(setCurrentPageActionCreator(page))
     const getUsers = (currentPage: number, pageSize: number, searchedName: string, isFriendsOnly: boolean) => dispatch(getUsersThunkCreator(currentPage, pageSize, searchedName, isFriendsOnly))
-    const follow = (userId: number) => dispatch(followThunkCreator(userId))
-    const unFollow = (userId: number) => dispatch(unFollowThunkCreator(userId))
 
     const onPageChanged = (page: number) => {
         setCurrentPage(page)
@@ -50,10 +47,8 @@ const Users: React.FC = () => {
             <div className={style.usersWrapper}>
                 {
                 usersData.map(user =>
-                    <User user={user}
-                        followingInProgress={followingInProgress}
-                        follow={follow}
-                        unFollow={unFollow}
+                    <User
+                        user={user}
                         key={user.id}
                     />)
                 }

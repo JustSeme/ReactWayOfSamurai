@@ -6,15 +6,19 @@ import MyTextarea from '../../../UI/MyTextarea/MyTextarea'
 import styles from './ProfileInfoForm.module.css'
 import { maxLengthCreator } from '../../../../utils/validators'
 import { ProfileType } from '../../../../types/types';
+import { useTypedDispatch } from '../../../../redux/redux-store';
+import { updateProfileInfoThunkCreator } from '../../../../redux/profileReducer';
 
 type PropsType = {
     profile: ProfileType
-    updateProfileInfo: (newProfileInfo: ProfileType) => void
     onClose: () => void
 
 }
 
-const ProfileInfoForm: React.FC<PropsType> = ({ profile, updateProfileInfo, onClose }) => {
+const ProfileInfoForm: React.FC<PropsType> = ({ profile, onClose }) => {
+
+    const dispatch = useTypedDispatch()
+    const updateProfileInfo = (newProfileInfo: ProfileType) => dispatch(updateProfileInfoThunkCreator(newProfileInfo))
 
     const onSubmit = (formData: ProfileType) => {
         formData.userId = profile.userId

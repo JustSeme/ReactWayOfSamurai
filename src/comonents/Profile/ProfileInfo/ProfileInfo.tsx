@@ -8,27 +8,21 @@ import ForAJob from './ForAJob/ForAJob';
 import Contacts from './Contacts/Contacts';
 import MyModal from '../../UI/MyModal/MyModal'
 import ProfileInfoForm from './ProfileInfoForm/ProfileInfoForm';
-import { ProfileType } from '../../../types/types';
 import { AppStateType, useTypedDispatch } from '../../../redux/redux-store';
 import { getIsFollowThunkCreator } from '../../../redux/profileReducer';
 import { followThunkCreator, unFollowThunkCreator } from '../../../redux/userReducer';
 import { useSelector } from 'react-redux';
 
 type PropsProfileInfoType = {
-    profile: ProfileType | null
-    status: string
     isOwner: boolean
-
-    savePhoto: (flie: string) => void
-    updateStatus: (statusText: string) => void
-    updateProfileInfo: (newProfileInfo: ProfileType) => void
 }
 
-const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateStatus, isOwner, savePhoto, updateProfileInfo }) => {
+const ProfileInfo: React.FC<PropsProfileInfoType> = ({ isOwner }) => {
     const [show, setShow] = useState(false)
     const dispatch = useTypedDispatch()
     
     const isFollow = useSelector((state: AppStateType) => state.profilePage.isFollow)
+    const profile = useSelector((state: AppStateType) => state.profilePage.profile)
     const followingInProgress = useSelector((state: AppStateType) => state.usersPage.followingInProgress)
     /* функции follow и unFollow находятся в userReducer, в то время как значение  isFollow - в profileReducer. Массив followingInProgress добавлен чтобы компонент перерендеривался */
 
@@ -58,7 +52,7 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateSt
                 <img alt='profile avatar' className={styles.profileAvatar} src={profile.photos.large || noAvatar} />
                 <div className={styles.profileButtonsWrapper}>
                     {!isOwner && subscribeBtn}
-                    {isOwner && <UpdatePhotoInput savePhoto={savePhoto} />}
+                    {isOwner && <UpdatePhotoInput />}
                     {isOwner && <button onClick={ () => setShow(true) } className={styles.labelBtn}>Редактировать профиль</button>}
                 </div>
                 <div>
@@ -67,9 +61,9 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ profile, status, updateSt
                 <div>
                     <b>About Me: </b>{profile.aboutMe}
                 </div>
-                <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner} />
+                <ProfileStatus isOwner={isOwner} />
                 <MyModal title='Редактирование профиля' onClose={() => setShow(false)} show={show}>
-                    <ProfileInfoForm onClose={() => setShow(false)} profile={profile} updateProfileInfo={updateProfileInfo} />
+                    <ProfileInfoForm onClose={() => setShow(false)} profile={profile} />
                 </MyModal>
             </div>
             <Contacts contacts={profile.contacts} />
