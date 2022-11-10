@@ -27,9 +27,6 @@ const Login: React.FC<LoginPropsType> = ({ login, isAuth, isCaptcha }) => {
             <div className={style.wrapper}>
                 <LoginForm login={login} isCaptcha={isCaptcha} />
             </div>
-            {/* <p style={{ 'fontSize': '17px' }}>Авторизация реализована с использованием серверного API social-network-samuraiJS.</p>
-            <p style={{ 'fontSize': '17px' }}>email: semyn03@mail.ru</p>
-            <p style={{ 'fontSize': '17px' }}>password: QWERTY123</p> */}
         </div>
     );
 };

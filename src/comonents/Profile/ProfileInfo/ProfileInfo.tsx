@@ -12,6 +12,7 @@ import { AppStateType, useTypedDispatch } from '../../../redux/redux-store';
 import { getIsFollowThunkCreator } from '../../../redux/profileReducer';
 import { followThunkCreator, unFollowThunkCreator } from '../../../redux/userReducer';
 import { useSelector } from 'react-redux';
+import { getFollowingInProgress } from '../../../redux/usersSelectors';
 
 type PropsProfileInfoType = {
     isOwner: boolean
@@ -23,7 +24,7 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ isOwner }) => {
     
     const isFollow = useSelector((state: AppStateType) => state.profilePage.isFollow)
     const profile = useSelector((state: AppStateType) => state.profilePage.profile)
-    const followingInProgress = useSelector((state: AppStateType) => state.usersPage.followingInProgress)
+    const followingInProgress = useSelector(getFollowingInProgress)
     /* функции follow и unFollow находятся в userReducer, в то время как значение  isFollow - в profileReducer. Массив followingInProgress добавлен чтобы компонент перерендеривался */
 
     if (!profile) {

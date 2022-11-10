@@ -32,9 +32,9 @@ export type FollowResponseType = {
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10, searchedName: string, isFriendsOnly: boolean | null) {
-        let extraParam = searchedName ? `&term=${searchedName}` : ''
-        extraParam += isFriendsOnly !== null ? `&friend=${isFriendsOnly}` : ''
-        return instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}${extraParam}`).then(response => response.data)
+        let queryParams = searchedName ? `&term=${searchedName}` : ''
+        queryParams += isFriendsOnly ? `&friend=${isFriendsOnly}` : ''
+        return instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}${queryParams}`).then(response => response.data)
     },
     followRequest(id: number) {
         return instance.post<FollowResponseType>(`follow/${id}`).then(response => response.data)

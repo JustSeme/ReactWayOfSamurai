@@ -67,8 +67,6 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
                 profile: { ...state.profile, photos: action.photos } as ProfileType
             }
         case TOGGLE_IS_FOLLOW:
-            console.log('изменения происходят');
-            
             return {
                 ...state,
                 isFollow: action.isFollow
