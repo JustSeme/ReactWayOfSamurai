@@ -11,6 +11,9 @@ import store, { AppStateType, useTypedDispatch } from './redux/redux-store'
 import Header from './comonents/Header/Header';
 import Profile from './comonents/Profile/Profile';
 import { useSelector } from 'react-redux';
+import { QueryParamProvider } from 'use-query-params';
+import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
+import { parse, stringify } from 'query-string';
 const Dialogs = React.lazy(() => import('./comonents/Dialogs/Dialogs'))
 const Users = React.lazy(() => import('./comonents/Users/Users'))
 
@@ -51,9 +54,17 @@ const App = () => {
 const SamuraiJSApp = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <QueryParamProvider
+        adapter={ReactRouter6Adapter}
+        options={{
+          searchStringToObject: parse,
+          objectToSearchString: stringify,
+        }}
+      >
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </QueryParamProvider>
     </BrowserRouter>
   )
 }

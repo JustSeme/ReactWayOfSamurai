@@ -10,12 +10,15 @@ import style from './Users.module.css'
 import UsersSearchForm from './UsersSearchForm';
 import useDebounce from '../../hooks/useDebounce';
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getIsSearching, getPageSize, getTotalUsersCount, getUsersSelector } from '../../redux/usersSelectors';
-import { useLocation, useNavigate } from 'react-router-dom';
-import queryString from 'query-string'
+import { useLocation } from 'react-router-dom';
+import { useQueryParam, NumberParam, StringParam } from 'use-query-params';
 
 const Users: React.FC = () => {
     const [searchedName, setSearchedName] = useState('')
     const [isFriendsOnly, setIsFriendsOnly] = useState(false)
+    const [page, setPage] = useQueryParam('page', NumberParam)
+    const [term, setTerm] = useQueryParam('term', StringParam)
+    const [friend, setFriend] = useQueryParam('friend', NumberParam)
 
     const debouncedSearchedName = useDebounce(searchedName, 500)
 
@@ -28,36 +31,33 @@ const Users: React.FC = () => {
     const followingInProgress: Array<number> = useSelector(getFollowingInProgress)
 
     const dispatch = useTypedDispatch()
-    const navigate = useNavigate()
     const location = useLocation()
 
     const follow = (userId: number) => dispatch(followThunkCreator(userId))
     const unFollow = (userId: number) => dispatch(unFollowThunkCreator(userId))
 
+    //update UI when URL changed
     useEffect(() => {
-        let {page, term, friend} = queryString.parse(location.search)
-        if(!term) term = ''
-        const actualFriendsOnly = friend === 'true' ? true : false
         let actualPage = currentPage
         if(page) dispatch(setCurrentPageActionCreator(Number(page)))
         if(term) setSearchedName(term as string)
-        if(friend) setIsFriendsOnly(actualFriendsOnly)
-
+        if(friend) setIsFriendsOnly(friend === 1 ? true : false)
         dispatch(getUsersThunkCreator(actualPage, pageSize, debouncedSearchedName, isFriendsOnly))
     }, [location.search])
 
     //update queryParams when filter changed
     useEffect(() => {
-        let queryParams = `page=${currentPage}`
-        queryParams += debouncedSearchedName ? `&term=${debouncedSearchedName}` : ''
-        queryParams += isFriendsOnly ? `&friend=${isFriendsOnly}` : ''
-        navigate(`?${queryParams}`)
-        debugger
-    }, [debouncedSearchedName, isFriendsOnly, currentPage, navigate])
+        if(currentPage) setPage(currentPage)
+        else setPage(undefined)
+        if(debouncedSearchedName) setTerm(debouncedSearchedName)
+        else setTerm(undefined)
+        if(isFriendsOnly) setFriend(1)
+        else setFriend(undefined)
+    }, [debouncedSearchedName, isFriendsOnly, currentPage, setPage, setTerm, setFriend])
 
     useEffect(() => {
         dispatch(setCurrentPageActionCreator(1))
-    }, [debouncedSearchedName, isFriendsOnly])
+    }, [debouncedSearchedName, isFriendsOnly, dispatch])
 
     const onPageChanged = (page: number) => {
         dispatch(setCurrentPageActionCreator(page))
