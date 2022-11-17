@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export type PostType = {
     id: number
     title: string
@@ -35,8 +37,8 @@ export type UserType = {
     followed: boolean
 }
 export type DialogType = {
-    name: string,
-    id: number,
+    label: ReactNode,
+    key: number,
 }
 export type MessageType = {
     messageText: string,

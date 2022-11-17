@@ -12,6 +12,7 @@ const SET_STATUS = 'profile/SET_STATUS'
 const DELETE_POST = 'profile/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
 const TOGGLE_IS_FOLLOW = 'profile/TOGGLE_IS_FOLLOW'
+const SET_AUTH_PHOTO = 'profile/SET_AUTH_PHOTO'
 
 const initialState = {
     postsData: [
@@ -19,6 +20,7 @@ const initialState = {
         { id: 2, title: 'Егор', body: 'Привет, Вероника!' },
     ] as Array<PostType>,
     profile: null as ProfileType | null,
+    authPhoto: null as string | null,
     status: '',
     isFollow: false,
 }
@@ -71,6 +73,11 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
                 ...state,
                 isFollow: action.isFollow
             }
+        case SET_AUTH_PHOTO: 
+            return {
+                ...state,
+                authPhoto: action.photo
+            }
         default:
             break;
     }
@@ -78,7 +85,7 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
     return state
 }
 
-type ActionsType = NewPostActionType | DeletePostActionType | SetUserProfileActionType | SetUserStatusActionType | SavePhotoSuccessActionType | ToggleIsFollowActionType
+type ActionsType = NewPostActionType | DeletePostActionType | SetUserProfileActionType | SetUserStatusActionType | SavePhotoSuccessActionType | ToggleIsFollowActionType | SetAuthPhotoActionType
 
 export default profileReducer
 
@@ -119,6 +126,13 @@ type ToggleIsFollowActionType = {
 }
 const toggleIsFollow = (isFollow: boolean): ToggleIsFollowActionType => ({ type: TOGGLE_IS_FOLLOW, isFollow })
 
+type SetAuthPhotoActionType = {
+    type: typeof SET_AUTH_PHOTO
+    photo: string | null
+}
+
+const setAuthPhoto = (photo: string | null): SetAuthPhotoActionType => ({type: SET_AUTH_PHOTO, photo})
+
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 
 export const getProfileThunkCreator = (userId: number):ThunkType => async (dispatch) => {
@@ -157,4 +171,9 @@ export const updateProfileInfoThunkCreator = (newProfileInfo: ProfileType): Thun
 export const getIsFollowThunkCreator = (userId: number): ThunkType => async (dispatch) => {
     let data = await profileAPI.getIsFollow(userId)
     dispatch(toggleIsFollow(data))
+}
+
+export const getAuthPhotoThunkCreator = (userId: number): ThunkType => async (dispatch) => {
+    let data = await profileAPI.getProfile(userId)
+    dispatch(setAuthPhoto(data.photos.small))
 }

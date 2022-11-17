@@ -20,3 +20,12 @@
     margin: 5px;
     color: white;
 }
+
+.loginAvatar {
+    margin-top: 10px;
+}
+
+.loginInfo {
+    color: white;
+    margin-left: 10px;
+}

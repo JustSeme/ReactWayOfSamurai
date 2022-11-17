@@ -12,7 +12,7 @@ import { AppStateType, useTypedDispatch } from '../../../redux/redux-store';
 import { getIsFollowThunkCreator } from '../../../redux/profileReducer';
 import { followThunkCreator, unFollowThunkCreator } from '../../../redux/userReducer';
 import { useSelector } from 'react-redux';
-import { getFollowingInProgress } from '../../../redux/usersSelectors';
+import { getFollowingInProgress } from '../../../redux/selectors/usersSelectors';
 
 type PropsProfileInfoType = {
     isOwner: boolean

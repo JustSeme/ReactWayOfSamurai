@@ -9,7 +9,7 @@ import MyPreloader from '../UI/MyPreloader/MyPreloader';
 import style from './Users.module.css'
 import UsersSearchForm from './UsersSearchForm';
 import useDebounce from '../../hooks/useDebounce';
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getIsSearching, getPageSize, getTotalUsersCount, getUsersSelector } from '../../redux/usersSelectors';
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getIsSearching, getPageSize, getTotalUsersCount, getUsersSelector } from '../../redux/selectors/usersSelectors';
 import { useLocation } from 'react-router-dom';
 import { useQueryParam, NumberParam, StringParam } from 'use-query-params';
 
