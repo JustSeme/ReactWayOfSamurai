@@ -1,0 +1,8 @@
+.textMessage {
+    position: absolute;
+    left: 50px;
+    top: 56%;
+    background: #83c2ff61;
+    border-radius: 5px;
+    padding: 1px 5px;
+}

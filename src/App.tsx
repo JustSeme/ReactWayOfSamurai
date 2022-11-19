@@ -23,6 +23,7 @@ import { DialogType } from './types/types';
 import { AppHeader } from './comonents/Header/Header';
 const Dialogs = React.lazy(() => import('./comonents/Dialogs/Dialogs'))
 const Users = React.lazy(() => import('./comonents/Users/Users'))
+const ChatPage = React.lazy(() => import('./comonents/pages/Chat/ChatPage'))
 
 const { Sider, Content } = Layout;
 
@@ -92,6 +93,7 @@ const App = () => {
             <Route path='/profile/:userId' element={<Profile />} />
             <Route path='/users' element={<Users />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/dialogs/chat' element={<ChatPage />} />
           </Routes>
         </Suspense>
         </Content>
