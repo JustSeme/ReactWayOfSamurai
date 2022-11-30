@@ -6,6 +6,7 @@ import authReducer from "./authReducer";
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
 import appReducer from "./appReducer";
 import { useDispatch } from "react-redux";
+import chatReducer from "./chatReducer";
 
 
 export type ReduxState = ReturnType<typeof rootReducer>;
@@ -18,6 +19,7 @@ let rootReducer = combineReducers({
     usersPage: userReducer,
     auth: authReducer,
     app: appReducer,
+    chat: chatReducer,
 })
 
 type RootReducerType = typeof rootReducer

@@ -1,12 +1,13 @@
 import { Avatar } from "antd"
-import { ChatMessageType } from "../ChatPage"
 import style from  './ChatMessage.module.css'
+import React from 'react'
+import { ChatMessageType } from "../../../../../redux/chatReducer"
 
 type MessagePropsType = {
     message: ChatMessageType
 }
 
-export const Message: React.FC<MessagePropsType> = ({ message }) => {
+export const ChatMessage: React.FC<MessagePropsType> = React.memo(({ message }) => {
     const userLink = `/profile/${message.userId}`
     return (
         <div style={{position: 'relative'}}>
@@ -22,4 +23,4 @@ export const Message: React.FC<MessagePropsType> = ({ message }) => {
             <p className={style.textMessage}>{message.message}</p>
         </div>
     )
-}
+})

@@ -3,10 +3,11 @@
     opacity: 0;
     position: absolute;
     width: 90%;
-    margin-top: 40px;
+    top: 175px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 10px;
+    z-index: 100;
     transition: all 0.5s ease-out;
     animation: appearance 1s forwards;
 }

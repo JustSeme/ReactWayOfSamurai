@@ -9,6 +9,8 @@ import { Navigate } from 'react-router-dom';
 import { LoginThunkType } from '../../types/types';
 import InfoBlock from './InfoBlock/InfoBlock';
 import infoCircle from '../../img/icons/infoCircle.svg'
+import { createForm } from 'final-form';
+import { Button } from 'antd';
 
 type LoginPropsType = {
     login: LoginThunkType
@@ -48,9 +50,19 @@ const LoginForm = ({ login, isCaptcha }: LoginFormType) => {
     const onSubmit = (formData: FormDataType) => {
         return login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
+    
+    const form = createForm({onSubmit})
+
+    const pasteLoginData = () => {
+        form.batch(() => {
+            form.change('email', 'semyn03@mail.ru')
+            form.change('password', 'QWERTY123')
+        })
+    }
 
     return (
         <Form
+            form={form}
             onSubmit={onSubmit}
             render={({ handleSubmit, submitError }) => (
                 <form className={style.signIn} onSubmit={handleSubmit}>
@@ -74,7 +86,7 @@ const LoginForm = ({ login, isCaptcha }: LoginFormType) => {
                         name='rememberMe'
                         type={'checkbox'}
                         component={'input'}
-                    />Запомнить меня
+                    /> Запомнить меня
                     <div id='captcha'></div>
                     {isCaptcha ?
                         <Field
@@ -94,7 +106,10 @@ const LoginForm = ({ login, isCaptcha }: LoginFormType) => {
                     </div>
                     <p>Don't you have an account? <a href="https://social-network.samuraijs.com/signUp">зарегистрироваться</a></p>
                     <InfoBlock visible={isShowInfo} />
-                    <img src={infoCircle} alt="info" onMouseOver={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)} />
+                    <div style={{display: 'flex'}}>
+                        <Button onClick={pasteLoginData}>Использовать тестовые данные</Button>
+                        <img src={infoCircle} alt="info" onMouseOver={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)} />
+                    </div>
                 </form>
             )}
         >
