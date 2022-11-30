@@ -5,24 +5,3 @@
     text-align: center;
     border: 1px solid rgb(59, 59, 59);
 }
-
-.formControl.error input,
-.formControl.error textarea {
-    border: 2px solid red;
-}
-
-.formControl.error span {
-    color: red;
-    padding-left: 5px;
-}
-
-.formSummaryError {
-    border: 2px solid red;
-    color: red;
-    border-radius: 5px;
-    max-width: 30%;
-    padding: 5px;
-    margin: 5px;
-    text-align: center;
-    font-weight: bold;
-}

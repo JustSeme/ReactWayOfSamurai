@@ -66,7 +66,7 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
         case SAVE_PHOTO_SUCCESS:
             return {
                 ...state,
-                profile: { ...state.profile, photos: action.photos } as ProfileType
+                profile: { ...state.profile, ...action.photos } as ProfileType
             }
         case TOGGLE_IS_FOLLOW:
             return {

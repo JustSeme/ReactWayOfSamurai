@@ -47,6 +47,9 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ isOwner }) => {
         subscribeBtn = <button className={styles.labelBtn} onClick={() => follow(profile.userId)}>Подписаться</button>
     }
 
+    console.log(profile);
+    
+
 
     return (
         <div className={styles.profileWrapper}>
