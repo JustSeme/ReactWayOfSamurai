@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import React from 'react';
 import { savePhotoThunkCreator } from '../../../../redux/profileReducer';
 import { useTypedDispatch } from '../../../../redux/redux-store';
@@ -21,7 +22,7 @@ const UpdatePhotoInput: React.FC = (props) => {
         <div className={styles.inputWrapper}>
             <input type='file' id='filePhoto' name='filePhoto' className={styles.fileInput}
                 accept="image/png, image/gif, image/jpeg" onChange={onPhotoChanged} />
-            <label className={styles.labelBtn} onClick={onLabelClick} htmlFor='filePhoto'>Загрузить новое фото</label>
+            <Button className={styles.labelBtn} onClick={onLabelClick}>Загрузить новое фото</Button>
         </div>
     );
 };

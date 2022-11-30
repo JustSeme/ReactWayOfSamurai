@@ -1,8 +1,9 @@
+import Input from 'antd/lib/input/Input';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { updateStatusThunkCreator } from '../../../../redux/profileReducer';
 import { AppStateType, useTypedDispatch } from '../../../../redux/redux-store';
-import MyInput from '../../../UI/MyInput/MyInput';
+import { CommentOutlined } from '@ant-design/icons'
 import styles from '../ProfileInfo.module.css'
 
 type PropsType = {
@@ -45,12 +46,15 @@ const ProfileStatus: React.FC<PropsType> = ({ isOwner }) => {
                         {statusSpanNode}
                     </div>
                     : <div>
-                        <MyInput
+                        <Input
+                            suffix={<CommentOutlined />}
                             value={statusText}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setStatusText(e.target.value)}
                             autoFocus={true}
                             onBlur={deActivateEditMode}
-                            placeholder='Введите статус...' />
+                            onPressEnter={deActivateEditMode}
+                            placeholder='Введите статус...'
+                        />
                     </div>
             }
         </div>

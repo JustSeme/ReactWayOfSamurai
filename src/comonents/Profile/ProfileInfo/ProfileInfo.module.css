@@ -60,14 +60,7 @@
 
 .labelBtn {
     margin-top: 15px;
-    cursor: pointer;
     font-size: 15px;
-    letter-spacing: 1px;
-    background: var(--secondary-color);
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
 }
 
 .profileButtonsWrapper {

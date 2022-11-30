@@ -13,6 +13,7 @@ import { getIsFollowThunkCreator } from '../../../redux/profileReducer';
 import { followThunkCreator, unFollowThunkCreator } from '../../../redux/userReducer';
 import { useSelector } from 'react-redux';
 import { getFollowingInProgress } from '../../../redux/selectors/usersSelectors';
+import { Button } from 'antd';
 
 type PropsProfileInfoType = {
     isOwner: boolean
@@ -54,7 +55,7 @@ const ProfileInfo: React.FC<PropsProfileInfoType> = ({ isOwner }) => {
                 <div className={styles.profileButtonsWrapper}>
                     {!isOwner && subscribeBtn}
                     {isOwner && <UpdatePhotoInput />}
-                    {isOwner && <button onClick={ () => setShow(true) } className={styles.labelBtn}>Редактировать профиль</button>}
+                    {isOwner && <Button onClick={ () => setShow(true) } className={styles.labelBtn}>Редактировать профиль</Button>}
                 </div>
                 <div>
                     <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{profile.fullName}</p>

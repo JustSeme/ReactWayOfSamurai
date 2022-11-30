@@ -7,6 +7,7 @@ import { maxLengthCreator } from '../../../utils/validators';
 import MyTextarea from '../../UI/MyTextarea/MyTextarea';
 import { useTypedDispatch } from '../../../redux/redux-store';
 import { newPostActionCreator } from '../../../redux/profileReducer';
+import { Button } from 'antd';
 
 const PostForm: React.FC = (props) => {
     const dispatch = useTypedDispatch()
@@ -32,6 +33,7 @@ const PostForm: React.FC = (props) => {
                         render={({ input, meta }) => (
                             <MyInput
                                 {...input}
+                                size='middle'
                                 placeholder='Ваше имя'
                             />
                         )}
@@ -45,7 +47,7 @@ const PostForm: React.FC = (props) => {
                         placeholder='Введите текст...'
                     />
                     <div>
-                        <MyButton disabled={invalid}>Создать пост</MyButton>
+                        <MyButton htmlType='submit' disabled={invalid} size='large' type='primary'>Создать пост</MyButton>
                     </div>
                 </form>
             )}
