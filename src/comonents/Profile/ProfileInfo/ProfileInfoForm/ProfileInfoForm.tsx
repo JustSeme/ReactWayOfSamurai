@@ -175,7 +175,7 @@ const ProfileInfoForm: React.FC<PropsType> = ({ profile, onClose }) => {
                         )}
                     />
                     <div>
-                        <MyButton type='primary' disabled={invalid}>Сохранить</MyButton>
+                        <MyButton htmlType='submit' type='primary' disabled={invalid}>Сохранить</MyButton>
                     </div>
                 </form>
             )}
