@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { AppStateType } from "../../../../redux/redux-store"
 import React, { useEffect, useRef, useState, } from "react"
 import { ChatMessageType } from "../../../../redux/chatReducer"
+import style from './Messages.module.css'
 
 export const Messages: React.FC = () => {
     const messages = useSelector((state: AppStateType) => state.chat.messages)
@@ -26,7 +27,7 @@ export const Messages: React.FC = () => {
 
     return (
         //Здесь надо бы адаптивный height
-        <div style={{height: 730, overflowY: 'auto'}} onScroll={scrollHandler}>
+        <div className={style.scrollWrap} onScroll={scrollHandler}>
             {messages.map((m: ChatMessageType, index: number) => <ChatMessage message={m} key={m.id} />)}
             <div ref={messagesAnchorRef}></div>
         </div>

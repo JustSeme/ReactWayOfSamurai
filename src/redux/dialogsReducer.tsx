@@ -5,14 +5,6 @@ import { Link } from "react-router-dom"
 const ADD_MESSAGE = 'dialogs/ADD_MESSAGE'
 
 const initialState = {
-    dialogsData: [
-        { label: <Link to='/dialogs/chat'>Developer chat</Link>, key: 5 },
-        { label: <Link to='/dialogs/0'>Jerry</Link>, key: 0 },
-        { label: <Link to='/dialogs/1'>Veronika</Link>, key: 1 },
-        { label: <Link to='/dialogs/2'>Forrest</Link>, key: 2 },
-        { label: <Link to='/dialogs/3'>Elizabeth</Link>, key: 3 },
-        { label: <Link to='/dialogs/4'>Arthur</Link>, key: 4 },
-    ] as Array<DialogType>,
     messagesData: [
         [
             { messageText: 'Hey! My name is Jerry', id: 1 },

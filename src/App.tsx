@@ -19,7 +19,6 @@ import {
   MailOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu,  } from 'antd';
-import { DialogType } from './types/types';
 import { AppHeader } from './comonents/Header/Header';
 const Dialogs = React.lazy(() => import('./comonents/Dialogs/Dialogs'))
 const Users = React.lazy(() => import('./comonents/Users/Users'))
@@ -30,8 +29,6 @@ const { Sider, Content } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const initialized = useSelector((state: AppStateType) => state.app.initialized)
-  //@ts-ignore
-  const dialogsData: Array<DialogType> = useSelector((state: AppStateType) => state.dialogsPage.dialogsData)
 
   const location = useLocation()
   const dispatch = useTypedDispatch()
@@ -67,10 +64,9 @@ const App = () => {
               label: <Link to='/users'>Developers</Link>,
             },
             {
-              key: '/dialogs',
+              key: '/dialogs/chat',
               icon: <MailOutlined />,
-              label: <Link to='/dialogs'>Dialogs</Link>,
-              children: dialogsData
+              label: <Link to='/dialogs/chat'>Chat</Link>,
             },
           ]}
         />

@@ -1,0 +1,23 @@
+.scrollWrap {
+    height: 690px;
+    overflow: auto;
+}
+
+@media screen and (max-height: 915px) {
+    .scrollWrap {
+        height: 640px;
+    }
+}
+
+@media screen and (max-height: 700px) { 
+    .scrollWrap {
+        height: 400px;
+    }
+}
+
+@media screen and (max-height: 639px) { 
+    .scrollWrap {
+        height: 500px;
+    }
+}
+
