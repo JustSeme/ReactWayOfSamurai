@@ -50,7 +50,7 @@ const App = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={[location.pathname]}
+          defaultSelectedKeys={[location.pathname.length > 1 ? location.pathname : '/profile']}
           selectable
           items={[
             {

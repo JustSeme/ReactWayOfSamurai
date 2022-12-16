@@ -1,10 +1,8 @@
-import React from 'react';
-import preloader from '../../../img/preloader.gif'
 import styles from './MyPreloader.module.css'
 
 const MyPreloader = () => {
     return (
-        <img alt='preloader' className={styles.preloader} src={preloader} />
+        <div className={styles.ldsEllipsis}><div></div><div></div><div></div><div></div></div>
     );
 };
 
