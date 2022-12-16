@@ -107,7 +107,7 @@ const LoginForm = ({ login, isCaptcha }: LoginFormType) => {
                     <p>Don't you have an account? <a href="https://social-network.samuraijs.com/signUp">зарегистрироваться</a></p>
                     <InfoBlock visible={isShowInfo} />
                     <div style={{display: 'flex'}}>
-                        <Button onClick={pasteLoginData}>Использовать тестовые данные</Button>
+                        <Button style={{'color': 'black'}} onClick={pasteLoginData}>Использовать тестовые данные</Button>
                         <img src={infoCircle} alt="info" onMouseOver={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)} />
                     </div>
                 </form>

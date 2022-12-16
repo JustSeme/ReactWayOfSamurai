@@ -11,9 +11,8 @@
     width: 300px;
     border-radius: 8px;
     position: relative;
-    color: rgb(79, 85, 97);
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
 }
 .signIn::before {
     display: block;
@@ -35,8 +34,8 @@
 	border-bottom-left-radius: 8px;
 }
 .signIn input[type="text"], .signIn input[type="password"], .signIn button, .signIn a[type="button"] {
-    background: var(--main-bg-color);
-    box-shadow: inset -100px -100px 0 var(--main-bg-color);
+    background: white;
+    box-shadow: inset -100px -100px 0 white;
     color: rgb(225, 225, 225);
 }
 .signIn input[type="text"], .signIn input[type="password"] {
@@ -86,7 +85,7 @@
 }
 .signIn p > a {
     font-size: 14px;
-    color: rgb(111, 119, 135);
+    color: rgb(107, 135, 192);
     text-decoration: none;
 }
 .signIn p > a:hover {
