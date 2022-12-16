@@ -6,7 +6,7 @@ import { ChatMessageType } from "../../../../redux/chatReducer"
 import style from './Messages.module.css'
 
 export const Messages: React.FC = () => {
-    const messages = useSelector((state: AppStateType) => state.chat.messages)
+    let messages = useSelector((state: AppStateType) => state.chat.messages)
     const messagesAnchorRef = useRef<HTMLDivElement>(null)
     const [isAutoScroll, setIsAutoScroll] = useState(true)
 
@@ -23,10 +23,12 @@ export const Messages: React.FC = () => {
         if(isAutoScroll) {
             messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
         }
+        return () => {
+            messages.length = 0
+        }
     }, [messages])
 
     return (
-        //Здесь надо бы адаптивный height
         <div className={style.scrollWrap} onScroll={scrollHandler}>
             {messages.map((m: ChatMessageType, index: number) => <ChatMessage message={m} key={m.id} />)}
             <div ref={messagesAnchorRef}></div>
