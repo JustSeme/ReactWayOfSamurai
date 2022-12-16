@@ -1,5 +1,5 @@
 import { acceptFollow, acceptUnfollow, followThunkCreator, toggleFollowing, unFollowThunkCreator } from "./userReducer"
-import { FollowResponseType, usersAPI } from "../api/api"
+import { FollowResponseType, usersAPI } from "../api/users-api"
 jest.mock('../api/api')
 
 const resp: FollowResponseType = {

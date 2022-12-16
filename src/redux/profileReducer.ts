@@ -1,10 +1,11 @@
 import veronika from '../img/avatar.png'
-import { profileAPI, ResultCodeEnum } from '../api/api'
+import { ResultCodeEnum } from '../api/users-api'
 import { PostType } from '../types/types'
 import { ProfileType } from '../types/types'
 import { PhotosType } from '../types/types'
 import { AppStateType } from './redux-store'
 import { ThunkAction } from 'redux-thunk'
+import { profileAPI } from '../api/profile-api'
 
 const ADD_POST = 'profile/ADD_POST'
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'

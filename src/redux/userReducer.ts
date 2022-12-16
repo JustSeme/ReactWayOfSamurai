@@ -1,4 +1,4 @@
-import { ResultCodeEnum, usersAPI } from "../api/api"
+import { ResultCodeEnum, usersAPI } from "../api/users-api"
 import { updateObjectInArray } from "../utils/objectHelpers"
 import { UserType } from "../types/types"
 import { ThunkAction } from "redux-thunk"

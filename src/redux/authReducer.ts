@@ -1,4 +1,5 @@
-import { authAPI, ResultCodeEnum, ResultCodeForCaptcha } from "../api/api"
+import { ResultCodeEnum, ResultCodeForCaptcha } from "../api/users-api"
+import { authAPI } from '../api/auth-api'
 import { FORM_ERROR } from "final-form"
 import { LoginThunkType } from "../types/types"
 import { ThunkAction } from "redux-thunk"
