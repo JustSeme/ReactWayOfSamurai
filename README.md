@@ -15,4 +15,4 @@
 ## Запуск проекта
 `yarn install` - Установка необходимых модулей
 `yarn start` - Запуск проекта на локальном сервере
-## Посмотреть проект можно на бесплатном хостинге - https://react-way-of-samurai.vercel.app/login
+## Войти в социальную сеть можно по ссылке - https://react-way-of-samurai.vercel.app/login
